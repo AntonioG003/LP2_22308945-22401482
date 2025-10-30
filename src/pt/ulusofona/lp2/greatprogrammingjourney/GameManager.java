@@ -10,20 +10,35 @@ import static pt.ulusofona.lp2.greatprogrammingjourney.Tabuleiro.tamanhoTabuleir
 
 public class GameManager {
 
-     Tabuleiro tabuleiro;
-     Player[] jogadores;
+    Tabuleiro tabuleiro;
+    Player[] jogadores;
     final int jogadoresMinimos = 2;
     final int jogadoresMaximos = 4;
-        int jogadorAtual = 0;
-     int currentPlayerIndex;
+    int jogadorAtual = 0;
 
+    // ✅ Cria o tabuleiro e valida jogadores
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-        if (tamanhoTabuleiro(playerInfo, worldSize)) {
-            this.tabuleiro.tamanho = worldSize;
-        }if (!recebePlayer(playerInfo)){
+        // valida array nulo
+        if (playerInfo == null || playerInfo.length < jogadoresMinimos || playerInfo.length > jogadoresMaximos) {
             return false;
         }
 
+        // cria tabuleiro se for válido
+        if (!tamanhoTabuleiro(playerInfo, worldSize)) {
+            return false; // worldSize inválido
+        }
+
+        // teste
+
+        this.tabuleiro = new Tabuleiro(); // ✅ AGORA ele existe
+        this.tabuleiro.tamanho = worldSize;
+
+        // valida jogadores
+        if (!recebePlayer(playerInfo)) {
+            return false;
+        }
+
+        // cria array de jogadores
         jogadores = new Player[playerInfo.length];
         for (int i = 0; i < playerInfo.length; i++) {
             int id = Integer.parseInt(playerInfo[i][0]);
@@ -34,7 +49,9 @@ public class GameManager {
                 listaLinguagens.add(lang.trim());
             }
             Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].toUpperCase());
-            jogadores[i] = new Player(id, nome, listaLinguagens, Player.Cores, 1, true);
+
+            // ✅ CORRIGIDO: passa cor correta
+            jogadores[i] = new Player(id, nome, listaLinguagens, cor, 1, true);
         }
 
         return true;
@@ -59,7 +76,6 @@ public class GameManager {
             default: return null;
         }
     }
-
 
     public String[] getProgrammerInfo(int id) {
         if (jogadores == null) {
@@ -93,7 +109,6 @@ public class GameManager {
 
         String[] slotInfo = new String[3];
         slotInfo[0] = String.valueOf(position);
-
         slotInfo[1] = "EMPTY";
         slotInfo[2] = "Espaço vazio";
 
@@ -108,15 +123,14 @@ public class GameManager {
         return slotInfo;
     }
 
-
     public int getCurrentPlayerID() {
         if (jogadores == null || jogadores.length == 0) {
-            return -1; // nenhum jogador // como que não vai ter um jogador?
+            return -1;
         }
 
         if (jogadorAtual < 0 || jogadorAtual >= jogadores.length) {
             jogadorAtual = 0;
-        }//isso serve pra alguma coisa?? é a gente que manipula os o currentplayer
+        }
 
         return jogadores[jogadorAtual].id;
     }
@@ -124,15 +138,14 @@ public class GameManager {
     public boolean moveCurrentPlayer(int nrSpaces) {
         if (jogadores == null || jogadores.length == 0 || tabuleiro == null) {
             return false;
-        }//dnv não tem pra que fazer essa verificação
+        }
 
-        jogadores[jogadorAtual].posicao = ricochete(jogadores[jogadorAtual].posicao+nrSpaces, tabuleiro.tamanho);
+        jogadores[jogadorAtual].posicao =
+                ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
 
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
-
         return true;
     }
-
 
     public boolean gameIsOver() {
         if (jogadores == null || tabuleiro == null) {
@@ -140,7 +153,7 @@ public class GameManager {
         }
 
         for (Player p : jogadores) {
-            if (p.posicao==tabuleiro.tamanho) {
+            if (p.posicao == tabuleiro.tamanho) {
                 return true;
             }
         }
@@ -148,18 +161,16 @@ public class GameManager {
         return false;
     }
 
-
-    public ArrayList<String> getGameResults () {
+    public ArrayList<String> getGameResults() {
         return null;
     }
 
-    public JPanel getAuthorsPanel () {
+    public JPanel getAuthorsPanel() {
         JPanel teste = new JPanel();
         return null;
     }
 
-    public HashMap<String, String> customizeBoard () {
+    public HashMap<String, String> customizeBoard() {
         return new HashMap<>();
     }
-
 }

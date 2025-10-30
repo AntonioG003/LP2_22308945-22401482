@@ -1,10 +1,10 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import pt.ulusofona.lp2.greatprogrammingjourney.*;
+
 public class Teste {
+
     GameManager testaGame = new GameManager();
-
-
 
     @Test
     void testCreateInitialBoardValido() {
@@ -14,51 +14,56 @@ public class Teste {
         jogadores[2] = new String[]{"3", "Ada Lovelace", "Lisp", "Green"};
         jogadores[3] = new String[]{"4", "John McCarthy", "C", "Brown"};
 
-        assertTrue(testaGame.createInitialBoard(jogadores, 8), "Deve criar o tabuleiro corretamente");
+        assertTrue(testaGame.createInitialBoard(jogadores, 8),
+                "Deve criar o tabuleiro corretamente");
     }
 
     @Test
     void testCreateInitialBoardJogadoresNulos() {
-        assertFalse(testaGame.createInitialBoard(null, 8), "Não deve aceitar jogadores nulos");
+        assertFalse(testaGame.createInitialBoard(null, 8),
+                "Não deve aceitar jogadores nulos");
     }
 
     @Test
     void testCreateInitialBoardVazio() {
         String[][] jogadores = new String[0][];
-        assertFalse(testaGame.createInitialBoard(jogadores, 8), "Não deve aceitar lista vazia de jogadores");
+        assertFalse(testaGame.createInitialBoard(jogadores, 8),
+                "Não deve aceitar lista vazia de jogadores");
     }
 
     @Test
     void testCreateInitialBoardWorldSizeInvalido() {
         String[][] jogadores = {
-                {"1", "Player 1", "Blue", "Purple"},
-                {"2", "Player 2", "Red", "Green"}
+                {"1", "Player 1", "Java", "Purple"},
+                {"2", "Player 2", "Python", "Green"}
         };
-        assertFalse(testaGame.createInitialBoard(jogadores, 2), "WorldSize inválido — muito pequeno");
+        assertFalse(testaGame.createInitialBoard(jogadores, 2),
+                "WorldSize inválido — muito pequeno");
     }
 
     @Test
     void testGetCurrentPlayerIDSemJogadores() {
-        assertEquals(-1, testaGame.getCurrentPlayerID(), "Sem jogadores, deve retornar -1");
+        assertEquals(-1, testaGame.getCurrentPlayerID(),
+                "Sem jogadores, deve retornar -1");
     }
 
     @Test
     void testGetCurrentPlayerIDComJogadores() {
         String[][] jogadores = {
-                {"1", "Player 1", "Blue", "Purple"},
-                {"2", "Player 2", "Red", "Green"}
+                {"1", "Player 1", "Java", "Purple"},
+                {"2", "Player 2", "Python", "Blue"}
         };
         testaGame.createInitialBoard(jogadores, 6);
-        assertEquals(1, testaGame.getCurrentPlayerID(), "Primeiro jogador deve ter ID 1");
+        assertEquals(1, testaGame.getCurrentPlayerID(),
+                "Primeiro jogador deve ter ID 1");
     }
-
 
     @Test
     void testMoveCurrentPlayerCiclico() {
         String[][] jogadores = {
-                {"1", "Player 1", "Blue", "Purple"},
-                {"2", "Player 2", "Red", "Green"},
-                {"3", "Player 3", "Yellow", "Black"}
+                {"1", "Player 1", "Java", "Purple"},
+                {"2", "Player 2", "Python", "Blue"},
+                {"3", "Player 3", "C", "Green"}
         };
         testaGame.createInitialBoard(jogadores, 6);
 
@@ -72,11 +77,13 @@ public class Teste {
 
         assertNotEquals(primeiro, segundo);
         assertNotEquals(segundo, terceiro);
-        assertEquals(primeiro, deNovoPrimeiro, "Deve voltar ao primeiro jogador após o último");
+        assertEquals(primeiro, deNovoPrimeiro,
+                "Deve voltar ao primeiro jogador após o último");
     }
 
     @Test
     void testMoveCurrentPlayerSemJogadores() {
-        assertTrue(testaGame.moveCurrentPlayer(1), "Mesmo sem jogadores, não deve lançar exceção");
+        assertFalse(testaGame.moveCurrentPlayer(1),
+                "Sem jogadores, deve retornar false");
     }
 }

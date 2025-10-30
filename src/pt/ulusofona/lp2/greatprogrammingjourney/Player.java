@@ -7,7 +7,7 @@ public class Player {
 
     public static Cores Cores;
 
-    public enum Cores {
+     enum Cores {
         PURPLE,
         GREEN,
         BROWN,
