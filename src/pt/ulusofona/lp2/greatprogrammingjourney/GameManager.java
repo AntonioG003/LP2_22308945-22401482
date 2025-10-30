@@ -10,12 +10,12 @@ import static pt.ulusofona.lp2.greatprogrammingjourney.Tabuleiro.tamanhoTabuleir
 
 public class GameManager {
 
-    public Tabuleiro tabuleiro;
-    public Player[] jogadores;
+     Tabuleiro tabuleiro;
+     Player[] jogadores;
     final int jogadoresMinimos = 2;
     final int jogadoresMaximos = 4;
-    public   int JOGADORATUAL = 0;
-    public int currentPlayerIndex;
+        int jogadorAtual = 0;
+     int currentPlayerIndex;
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         if (tamanhoTabuleiro(playerInfo, worldSize)) {
@@ -114,11 +114,11 @@ public class GameManager {
             return -1; // nenhum jogador // como que não vai ter um jogador?
         }
 
-        if (JOGADORATUAL < 0 || JOGADORATUAL >= jogadores.length) {
-            JOGADORATUAL = 0;
+        if (jogadorAtual < 0 || jogadorAtual >= jogadores.length) {
+            jogadorAtual = 0;
         }//isso serve pra alguma coisa?? é a gente que manipula os o currentplayer
 
-        return jogadores[JOGADORATUAL].id;
+        return jogadores[jogadorAtual].id;
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
@@ -126,9 +126,9 @@ public class GameManager {
             return false;
         }//dnv não tem pra que fazer essa verificação
 
-        jogadores[JOGADORATUAL].posicao = ricochete(jogadores[JOGADORATUAL].posicao+nrSpaces, tabuleiro.tamanho);
+        jogadores[jogadorAtual].posicao = ricochete(jogadores[jogadorAtual].posicao+nrSpaces, tabuleiro.tamanho);
 
-        JOGADORATUAL = (JOGADORATUAL + 1) % jogadores.length;
+        jogadorAtual = (jogadorAtual + 1) % jogadores.length;
 
         return true;
     }
