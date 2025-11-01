@@ -32,23 +32,24 @@ public class Player {
 
     @Override
     public String toString() {
-        if (estado) {
-            return id + " | " + nome + " | " + posicao + " | " + linguagem + " | Em jogo";
-        }
-        return id + " | " + nome + " | " + posicao + " | " + linguagem + " | Derrotado";
+        String linguagensStr = String.join("; ", linguagem);
+        String estadoStr = estado ? "Em Jogo" : "Derrotado";
+        return id + " | " + nome + " | " + posicao + " | " + linguagensStr + " | " + estadoStr;
     }
 
 
     public String[] getInfoArray() {
         String linguagensStr = String.join(";", linguagem);
+        String corFormatada = cor.name().substring(0, 1).toUpperCase() + cor.name().substring(1).toLowerCase();
         return new String[]{
                 String.valueOf(id),
                 nome,
                 linguagensStr,
-                cor.name(),
+                corFormatada,
                 String.valueOf(posicao)
         };
     }
+
 
     public static boolean recebePlayer(String[][] playerInfo) {
         if (playerInfo.length < 2 || playerInfo.length > 4) {

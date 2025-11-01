@@ -16,46 +16,66 @@ public class GameManager {
     final int jogadoresMaximos = 4;
     int jogadorAtual = 0;
 
-    // ✅ Cria o tabuleiro e valida jogadores
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-        // valida array nulo
         if (playerInfo == null || playerInfo.length < jogadoresMinimos || playerInfo.length > jogadoresMaximos) {
             return false;
         }
 
-        // cria tabuleiro se for válido
-        if (!tamanhoTabuleiro(playerInfo, worldSize)) {
-            return false; // worldSize inválido
-        }
-
-        // teste
-
-        this.tabuleiro = new Tabuleiro(); // ✅ AGORA ele existe
-        this.tabuleiro.tamanho = worldSize;
-
-        // valida jogadores
-        if (!recebePlayer(playerInfo)) {
+        if (worldSize < (2 * playerInfo.length)) {
             return false;
         }
 
-        // cria array de jogadores
+        this.tabuleiro = new Tabuleiro();
+        this.tabuleiro.tamanho = worldSize;
+        this.tabuleiro.jogadores = new ArrayList<>();
+
+        ArrayList<Integer> idsUsados = new ArrayList<>();
+        ArrayList<Player.Cores> coresUsadas = new ArrayList<>();
+
         jogadores = new Player[playerInfo.length];
         for (int i = 0; i < playerInfo.length; i++) {
-            int id = Integer.parseInt(playerInfo[i][0]);
-            String nome = playerInfo[i][1];
-            String[] linguagens = playerInfo[i][2].split(";");
-            ArrayList<String> listaLinguagens = new ArrayList<>();
-            for (String lang : linguagens) {
-                listaLinguagens.add(lang.trim());
-            }
-            Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].toUpperCase());
+            String[] info = playerInfo[i];
+            if (info.length < 4) return false;
 
-            // ✅ CORRIGIDO: passa cor correta
-            jogadores[i] = new Player(id, nome, listaLinguagens, cor, 1, true);
+            int id;
+            try {
+                id = Integer.parseInt(info[0]);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+
+            String nome = info[1].trim();
+            String linguagensStr = info[2].trim();
+            if (linguagensStr.isEmpty()) return false;
+
+            String[] linguagensArray = linguagensStr.split(";");
+            ArrayList<String> linguagens = new ArrayList<>();
+            for (String lang : linguagensArray) {
+                linguagens.add(lang.trim());
+            }
+
+            Player.Cores cor;
+            try {
+                cor = Player.Cores.valueOf(info[3].trim().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+
+            if (idsUsados.contains(id) || coresUsadas.contains(cor)) {
+                return false;
+            }
+            idsUsados.add(id);
+            coresUsadas.add(cor);
+
+            Player novo = new Player(id, nome, linguagens, cor, 1, true);
+            jogadores[i] = novo;
+            this.tabuleiro.jogadores.add(novo);
         }
 
+        jogadorAtual = 0;
         return true;
     }
+
 
     public String getImagePng(int nrSquare) {
         if (tabuleiro == null || nrSquare < 1 || nrSquare > this.tabuleiro.tamanho) {
@@ -169,7 +189,7 @@ public class GameManager {
         JPanel teste = new JPanel();
         return null;
     }
-
+// hei
     public HashMap<String, String> customizeBoard() {
         return new HashMap<>();
     }
