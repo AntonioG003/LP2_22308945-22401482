@@ -1,38 +1,26 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
-
-    public enum Cores {
-        PURPLE, GREEN, BROWN, BLUE
-    }
-
     private int id;
     private String nome;
-    private ArrayList<String> linguagem;
-    private Cores cor;
+    private List<String> linguagens;
     private int posicao;
-    private boolean estado; // true = Em jogo, false = Derrotado
+    private String estado;
+    private String cor;
 
-    public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
+    private static final String[] CORES = {"Blue", "Green", "Red", "Yellow"};
+
+    public Player(int id, String nome, List<String> linguagens, int corIndex) {
         this.id = id;
         this.nome = nome;
-        this.linguagem = linguagem;
-        this.cor = cor;
-        this.posicao = posicao;
-        this.estado = estado;
+        this.linguagens = linguagens;
+        this.posicao = 1;
+        this.estado = "Em Jogo";
+        this.cor = CORES[corIndex % CORES.length];
     }
 
-    @Override
-    public String toString() {
-        if (estado) {
-            return id + " | " + nome + " | " + posicao + " | " + String.join("; ", linguagem) + " | Em Jogo";
-        }
-        return id + " | " + nome + " | " + posicao + " | " + String.join("; ", linguagem) + " | Derrotado";
-    }
-
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -41,19 +29,19 @@ public class Player {
         return nome;
     }
 
-    public ArrayList<String> getLinguagem() {
-        return linguagem;
-    }
-
-    public String getCor() {
-        return cor;
+    public List<String> getLinguagens() {
+        return linguagens;
     }
 
     public int getPosicao() {
         return posicao;
     }
 
-    public boolean isAtivo() {
+    public String getCor() {
+        return cor;
+    }
+
+    public String getEstado() {
         return estado;
     }
 
@@ -61,7 +49,12 @@ public class Player {
         this.posicao = posicao;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getProgrammerInfoAsStr() {
+        String linguagensStr = String.join("; ", linguagens);
+        return id + " | " + nome + " | " + posicao + " | " + linguagensStr + " | " + estado;
     }
 }
