@@ -1,25 +1,19 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Player {
 
-    public static Cores Cores;
-
-     enum Cores {
-        PURPLE,
-        GREEN,
-        BROWN,
-        BLUE
+    public enum Cores {
+        PURPLE, GREEN, BROWN, BLUE
     }
 
-    int id;
-    String nome;
-    ArrayList<String> linguagem;
-    Cores cor;
-    int posicao;
-    boolean estado;
+    private int id;
+    private String nome;
+    private ArrayList<String> linguagem;
+    private Cores cor;
+    private int posicao;
+    private boolean estado; // true = Em jogo, false = Derrotado
 
     public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
         this.id = id;
@@ -32,61 +26,42 @@ public class Player {
 
     @Override
     public String toString() {
-        String linguagensStr = String.join("; ", linguagem);
-        String estadoStr = estado ? "Em Jogo" : "Derrotado";
-        return id + " | " + nome + " | " + posicao + " | " + linguagensStr + " | " + estadoStr;
-    }
-
-
-    public String[] getInfoArray() {
-        String linguagensStr = String.join(";", linguagem);
-        String corFormatada = cor.name().substring(0, 1).toUpperCase() + cor.name().substring(1).toLowerCase();
-        return new String[]{
-                String.valueOf(id),
-                nome,
-                linguagensStr,
-                corFormatada,
-                String.valueOf(posicao)
-        };
-    }
-
-
-    public static boolean recebePlayer(String[][] playerInfo) {
-        if (playerInfo.length < 2 || playerInfo.length > 4) {
-            return false;
+        if (estado) {
+            return id + " | " + nome + " | " + posicao + " | " + String.join("; ", linguagem) + " | Em Jogo";
         }
-
-        String[][] testeId = new String[playerInfo.length][4];
-
-        for (int currentPlayer = 0; currentPlayer < playerInfo.length; currentPlayer++) {
-
-            for (int otherPlayer = 0; otherPlayer <= currentPlayer; otherPlayer++) {
-                if (Objects.equals(testeId[otherPlayer][0], playerInfo[currentPlayer][0])||
-                        Objects.equals(testeId[otherPlayer][3], playerInfo[currentPlayer][3])) {
-                    return false; // ID/cor repetido
-                }
-            }
-
-            testeId[currentPlayer] = playerInfo[currentPlayer];
-
-            if (playerInfo[currentPlayer][2] == null || playerInfo[currentPlayer][2].isEmpty()) {
-                return false;
-            }
-        }
-
-        return true;
+        return id + " | " + nome + " | " + posicao + " | " + String.join("; ", linguagem) + " | Derrotado";
     }
 
-    public boolean guardaPlayer(String[][] playerInfo) {
-        for (int i = 0; i < playerInfo.length; i++) {
-
-        }
-        return true;
+    // Getters e Setters
+    public int getId() {
+        return id;
     }
-    public static int ricochete(int novaPosicao,int tamanhoTabuleiro){
-      if (novaPosicao> tamanhoTabuleiro) {
-          return tamanhoTabuleiro-novaPosicao;
-      }
-      return novaPosicao;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public ArrayList<String> getLinguagem() {
+        return linguagem;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public boolean isAtivo() {
+        return estado;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 }
