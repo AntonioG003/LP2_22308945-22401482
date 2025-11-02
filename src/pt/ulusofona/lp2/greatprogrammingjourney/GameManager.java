@@ -137,22 +137,22 @@ public class GameManager {
     }
 
     public ArrayList<String> getGameResults() {
-        ArrayList<String> r = new ArrayList<>();
-        r.add("THE GREAT PROGRAMMING JOURNEY");
-        r.add("");
-        r.add("NR. DE TURNOS");
-        r.add("0");
-        r.add("");
-        r.add("VENCEDOR");
-        r.add("Nenhum");
-        r.add("");
-        r.add("RESTANTES");
+        ArrayList<String> results = new ArrayList<>();
+        results.add("THE GREAT PROGRAMMING JOURNEY");
+        results.add("");
+        results.add("NR. DE TURNOS");
+        results.add("0");
+        results.add("");
+        results.add("VENCEDOR");
+        results.add("Nenhum");
+        results.add("");
+        results.add("RESTANTES");
         if (jogadores != null) {
             for (Player p : jogadores) {
-                r.add(p.nome + " " + p.posicao);
+                results.add(p.nome + " " + p.posicao);
             }
         }
-        return r;
+        return results;
     }
 
     public JPanel getAuthorsPanel() {
