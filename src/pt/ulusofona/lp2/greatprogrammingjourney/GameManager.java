@@ -23,14 +23,11 @@ public class GameManager {
         if (!tamanhoTabuleiro(playerInfo, worldSize)) {
             return false;
         }
-
         this.tabuleiro = new Tabuleiro();
         this.tabuleiro.tamanho = worldSize;
-
         if (!recebePlayer(playerInfo)) {
             return false;
         }
-
         jogadores = new Player[playerInfo.length];
         for (int i = 0; i < playerInfo.length; i++) {
             int id = Integer.parseInt(playerInfo[i][0]);
@@ -40,7 +37,7 @@ public class GameManager {
             for (String lang : linguagensStr) {
                 linguagens.add(lang.trim());
             }
-            Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].toUpperCase());
+            Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].trim().toUpperCase());
             jogadores[i] = new Player(id, nome, linguagens, cor, 1, true);
         }
         return true;
@@ -53,7 +50,15 @@ public class GameManager {
         if (nrSquare == this.tabuleiro.tamanho) {
             return "glory.png";
         }
-        return null;
+        switch (nrSquare) {
+            case 1: return "dice_1.png";
+            case 2: return "dice_2.png";
+            case 3: return "dice_3.png";
+            case 4: return "dice_4.png";
+            case 5: return "dice_5.png";
+            case 6: return "dice_6.png";
+            default: return null;
+        }
     }
 
     public String[] getProgrammerInfo(int id) {
@@ -62,7 +67,7 @@ public class GameManager {
         }
         for (Player p : jogadores) {
             if (p != null && p.id == id) {
-                return p.getInfoArray();
+                return p.getInfoArrayApi();
             }
         }
         return null;
@@ -73,19 +78,22 @@ public class GameManager {
         if (info == null) {
             return null;
         }
-        return String.join(" | ", info);
+        for (Player p : jogadores) {
+            if (p != null && p.id == id) {
+                return p.getProgrammerInfoAsStr();
+            }
+        }
+        return null;
     }
 
     public String[] getSlotInfo(int position) {
         if (tabuleiro == null || position < 1 || position > tabuleiro.tamanho) {
             return null;
         }
-
         String[] slotInfo = new String[3];
         slotInfo[0] = String.valueOf(position);
         slotInfo[1] = "EMPTY";
         slotInfo[2] = "Espaço vazio";
-
         if (position == 1) {
             slotInfo[1] = "START";
             slotInfo[2] = "Início do tabuleiro";
@@ -93,13 +101,15 @@ public class GameManager {
             slotInfo[1] = "GLORY";
             slotInfo[2] = "Chegada! Vitória 🎉";
         }
-
         return slotInfo;
     }
 
     public int getCurrentPlayerID() {
         if (jogadores == null || jogadores.length == 0) {
             return -1;
+        }
+        if (jogadorAtual < 0 || jogadorAtual >= jogadores.length) {
+            jogadorAtual = 0;
         }
         return jogadores[jogadorAtual].id;
     }
@@ -108,10 +118,8 @@ public class GameManager {
         if (jogadores == null || jogadores.length == 0 || tabuleiro == null) {
             return false;
         }
-
         jogadores[jogadorAtual].posicao =
                 ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
-
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
         return true;
     }
@@ -129,13 +137,28 @@ public class GameManager {
     }
 
     public ArrayList<String> getGameResults() {
-        return null;
+        ArrayList<String> r = new ArrayList<>();
+        r.add("THE GREAT PROGRAMMING JOURNEY");
+        r.add("");
+        r.add("NR. DE TURNOS");
+        r.add("0");
+        r.add("");
+        r.add("VENCEDOR");
+        r.add("Nenhum");
+        r.add("");
+        r.add("RESTANTES");
+        if (jogadores != null) {
+            for (Player p : jogadores) {
+                r.add(p.nome + " " + p.posicao);
+            }
+        }
+        return r;
     }
 
     public JPanel getAuthorsPanel() {
         return null;
     }
-
+// lll
     public HashMap<String, String> customizeBoard() {
         return new HashMap<>();
     }
