@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Player {
 
@@ -25,6 +26,7 @@ public class Player {
     }
 
     public String[] getInfoArrayApi() {
+        Collections.sort(linguagem);
         String linguagensStr = String.join("; ", linguagem);
         String corFormatada = cor.name().substring(0, 1).toUpperCase() + cor.name().substring(1).toLowerCase();
         return new String[]{
@@ -43,8 +45,12 @@ public class Player {
     }
 
     public static boolean recebePlayer(String[][] playerInfo) {
-        if (playerInfo == null) return false;
-        if (playerInfo.length < 2 || playerInfo.length > 4) return false;
+        if (playerInfo == null){
+            return false;
+        }
+        if (playerInfo.length < 2 || playerInfo.length > 4){
+            return false;
+        }
         return true;
     }
 

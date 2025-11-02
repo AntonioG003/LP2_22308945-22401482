@@ -90,8 +90,14 @@ public class GameManager {
         if (tabuleiro == null || position < 1 || position > tabuleiro.tamanho) {
             return null;
         }
+            String jogadoresNoTabuleiro = "";
+            for (Player p : jogadores) {
+                if (p.posicao == position){
+                    jogadoresNoTabuleiro += p.id;
+                }
+            }
         String[] slotInfo = new String[3];
-        slotInfo[0] = String.valueOf(position);
+        slotInfo[0] = jogadoresNoTabuleiro;
         slotInfo[1] = "EMPTY";
         slotInfo[2] = "Espaço vazio";
         if (position == 1) {

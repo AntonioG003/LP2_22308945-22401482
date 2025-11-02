@@ -9,3 +9,7 @@ public class Tabuleiro {
         return (worldSize >= (2 * playerInfo.length));
     }
 }
+
+/*
+ <1 | Boss Baby | 1 | Clojure; Common Lisp; D | Em Jogo>
+ <1 | Boss Baby | 1 | D; Common Lisp; Clojure | Em Jogo>*/
