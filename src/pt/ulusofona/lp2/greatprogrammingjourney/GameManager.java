@@ -15,7 +15,7 @@ public class GameManager {
     final int jogadoresMinimos = 2;
     final int jogadoresMaximos = 4;
     int jogadorAtual = 0;
-    int turno= 0;
+    int turno= 1;
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         if (playerInfo == null || playerInfo.length < jogadoresMinimos || playerInfo.length > jogadoresMaximos) {
