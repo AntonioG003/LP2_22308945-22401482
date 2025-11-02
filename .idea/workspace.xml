@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TestGameManager.java/src/Teste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestGameManager.java/src/Teste.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +53,9 @@
     "Application.Unnamed.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.Teste.executor": "Run",
+    "JUnit.Teste.testDrop_GameOver.executor": "Run",
+    "JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao.executor": "Run",
+    "JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -78,7 +82,7 @@
       <recent name="C:\Users\agmz_\OneDrive\Área de Trabalho\lusofona24-25\fundamentos\LP2_22308945-22401482\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Teste">
+  <component name="RunManager" selected="JUnit.Teste.testDrop_GameOver">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-24" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -97,8 +101,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Teste.testDrop_GameOver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TestGameManager.java" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Teste" />
+      <option name="METHOD_NAME" value="testDrop_GameOver" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Teste.testDrop_MoveCurrentPlayer_Posicao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TestGameManager.java" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Teste" />
+      <option name="METHOD_NAME" value="testDrop_MoveCurrentPlayer_Posicao" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Teste.testDrop_getProgrammerInfoAsStr_Format" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TestGameManager.java" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Teste" />
+      <option name="METHOD_NAME" value="testDrop_getProgrammerInfoAsStr_Format" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Teste.testDrop_GameOver" />
+        <item itemvalue="JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao" />
+        <item itemvalue="JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format" />
         <item itemvalue="JUnit.Teste" />
       </list>
     </recent_temporary>

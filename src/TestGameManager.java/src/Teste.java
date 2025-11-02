@@ -4,31 +4,28 @@ import pt.ulusofona.lp2.greatprogrammingjourney.*;
 
 public class Teste {
 
-    GameManager testaGame = new GameManager();
+    GameManager gm = new GameManager();
 
     @Test
     void testCreateInitialBoardValido() {
-        String[][] jogadores = new String[4][];
-        jogadores[0] = new String[]{"1", "Joshua Bloch", "Java", "Purple"};
-        jogadores[1] = new String[]{"2", "Guido van Rossum", "Python", "Blue"};
-        jogadores[2] = new String[]{"3", "Ada Lovelace", "Lisp", "Green"};
-        jogadores[3] = new String[]{"4", "John McCarthy", "C", "Brown"};
-
-        assertTrue(testaGame.createInitialBoard(jogadores, 8),
-                "Deve criar o tabuleiro corretamente");
+        String[][] jogadores = {
+                {"1", "Joshua Bloch", "Java", "Purple"},
+                {"2", "Guido van Rossum", "Python", "Blue"},
+                {"3", "Ada Lovelace", "Lisp", "Green"},
+                {"4", "John McCarthy", "C", "Brown"}
+        };
+        assertTrue(gm.createInitialBoard(jogadores, 8));
     }
 
     @Test
     void testCreateInitialBoardJogadoresNulos() {
-        assertFalse(testaGame.createInitialBoard(null, 8),
-                "Não deve aceitar jogadores nulos");
+        assertFalse(gm.createInitialBoard(null, 8));
     }
 
     @Test
     void testCreateInitialBoardVazio() {
         String[][] jogadores = new String[0][];
-        assertFalse(testaGame.createInitialBoard(jogadores, 8),
-                "Não deve aceitar lista vazia de jogadores");
+        assertFalse(gm.createInitialBoard(jogadores, 8));
     }
 
     @Test
@@ -37,14 +34,12 @@ public class Teste {
                 {"1", "Player 1", "Java", "Purple"},
                 {"2", "Player 2", "Python", "Green"}
         };
-        assertFalse(testaGame.createInitialBoard(jogadores, 2),
-                "WorldSize inválido — muito pequeno");
+        assertFalse(gm.createInitialBoard(jogadores, 2));
     }
-/*
+
     @Test
     void testGetCurrentPlayerIDSemJogadores() {
-        assertEquals(-1, testaGame.getCurrentPlayerID(),
-                "Sem jogadores, deve retornar -1");
+        assertEquals(-1, gm.getCurrentPlayerID());
     }
 
     @Test
@@ -53,9 +48,8 @@ public class Teste {
                 {"1", "Player 1", "Java", "Purple"},
                 {"2", "Player 2", "Python", "Blue"}
         };
-        testaGame.createInitialBoard(jogadores, 6);
-        assertEquals(1, testaGame.getCurrentPlayerID(),
-                "Primeiro jogador deve ter ID 1");
+        gm.createInitialBoard(jogadores, 6);
+        assertEquals(1, gm.getCurrentPlayerID());
     }
 
     @Test
@@ -65,21 +59,57 @@ public class Teste {
                 {"2", "Player 2", "Python", "Blue"},
                 {"3", "Player 3", "C", "Green"}
         };
-        testaGame.createInitialBoard(jogadores, 6);
-
-        int primeiro = testaGame.getCurrentPlayerID();
-        testaGame.moveCurrentPlayer(1);
-        int segundo = testaGame.getCurrentPlayerID();
-        testaGame.moveCurrentPlayer(1);
-        int terceiro = testaGame.getCurrentPlayerID();
-        testaGame.moveCurrentPlayer(1);
-        int deNovoPrimeiro = testaGame.getCurrentPlayerID();
-
-        assertNotEquals(primeiro, segundo);
-        assertNotEquals(segundo, terceiro);
-        assertEquals(primeiro, deNovoPrimeiro,
-                "Deve voltar ao primeiro jogador após o último");
+        gm.createInitialBoard(jogadores, 6);
+        int primeiro = gm.getCurrentPlayerID();
+        gm.moveCurrentPlayer(1);
+        int segundo = gm.getCurrentPlayerID();
+        gm.moveCurrentPlayer(1);
+        int terceiro = gm.getCurrentPlayerID();
+        gm.moveCurrentPlayer(1);
+        int deNovoPrimeiro = gm.getCurrentPlayerID();
+        assertEquals(primeiro, deNovoPrimeiro);
     }
 
-    */
+    @Test
+    void testMoveCurrentPlayerSemJogadores() {
+        assertFalse(gm.moveCurrentPlayer(1));
+    }
+
+    @Test
+    void testDrop_getProgrammerInfoAsStr_Format() {
+        String[][] jogadores = {
+                {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
+                {"2", "Ada", "Python; C", "Green"}
+        };
+        gm.createInitialBoard(jogadores, 6);
+
+        String esperado = "1 | Bruninho | 1 | Common Lisp; PHP | Em Jogo";
+        assertEquals(esperado, gm.getProgrammerInfoAsStr(1));
+    }
+
+    @Test
+    void testDrop_MoveCurrentPlayer_Posicao() {
+        String[][] jogadores = {
+                {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
+                {"2", "Ada", "Python; C", "Green"}
+        };
+        gm.createInitialBoard(jogadores, 6);
+
+        gm.moveCurrentPlayer(1);
+        String esperado = "1 | Bruninho | 2 | Common Lisp; PHP | Em Jogo";
+        assertEquals(esperado, gm.getProgrammerInfoAsStr(1));
+    }
+
+    @Test
+    void testDrop_GameOver() {
+        String[][] jogadores = {
+                {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
+                {"2", "Ada", "Python; C", "Green"}
+        };
+        gm.createInitialBoard(jogadores, 6);
+        for (int i = 0; i < 5; i++) {
+            gm.moveCurrentPlayer(1);
+        }
+        assertTrue(gm.gameIsOver());
+    }
 }

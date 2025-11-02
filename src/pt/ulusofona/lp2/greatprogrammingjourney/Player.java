@@ -1,60 +1,51 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Player {
-    private int id;
-    private String nome;
-    private List<String> linguagens;
-    private int posicao;
-    private String estado;
-    private String cor;
 
-    private static final String[] CORES = {"Blue", "Green", "Red", "Yellow"};
+    int id;
+    String nome;
+    ArrayList<String> linguagens;
+    Cores cor;
+    int posicao;
+    String estado;
 
-    public Player(int id, String nome, List<String> linguagens, int corIndex) {
+    public enum Cores {
+        BLUE, GREEN, PURPLE, BROWN
+    }
+
+    public Player(int id, String nome, ArrayList<String> linguagens, Cores cor, int posicao, boolean emJogo) {
         this.id = id;
         this.nome = nome;
         this.linguagens = linguagens;
-        this.posicao = 1;
-        this.estado = "Em Jogo";
-        this.cor = CORES[corIndex % CORES.length];
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public List<String> getLinguagens() {
-        return linguagens;
-    }
-
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setPosicao(int posicao) {
+        this.cor = cor;
         this.posicao = posicao;
+        this.estado = emJogo ? "Em Jogo" : "Derrotado";
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public String[] getInfoArray() {
+        return new String[]{
+                String.valueOf(id),
+                nome,
+                String.valueOf(posicao),
+                String.join("; ", linguagens),
+                estado
+        };
     }
 
-    public String getProgrammerInfoAsStr() {
-        String linguagensStr = String.join("; ", linguagens);
-        return id + " | " + nome + " | " + posicao + " | " + linguagensStr + " | " + estado;
+    public static boolean recebePlayer(String[][] playerInfo) {
+        return playerInfo != null && playerInfo.length >= 2 && playerInfo.length <= 4;
+    }
+
+    public static int ricochete(int novaPosicao, int tamanho) {
+        if (novaPosicao > tamanho) {
+            int sobra = novaPosicao - tamanho;
+            return tamanho - sobra;
+        }
+        if (novaPosicao < 1) {
+            return 1;
+        }
+        return novaPosicao;
     }
 }
