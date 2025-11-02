@@ -15,6 +15,7 @@ public class GameManager {
     final int jogadoresMinimos = 2;
     final int jogadoresMaximos = 4;
     int jogadorAtual = 0;
+    int turno= 0;
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         if (playerInfo == null || playerInfo.length < jogadoresMinimos || playerInfo.length > jogadoresMaximos) {
@@ -119,6 +120,7 @@ public class GameManager {
         jogadores[jogadorAtual].posicao =
                 ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
+        turno++;
         return true;
     }
 
@@ -140,13 +142,13 @@ public class GameManager {
         results.add("THE GREAT PROGRAMMING JOURNEY");
         results.add("");
         results.add("NR. DE TURNOS");
-        results.add("0");
+        results.add(""+turno);
         results.add("");
         results.add("VENCEDOR");
         if (jogadores != null) {
         for (Player p : jogadores) {
             if (p.posicao== tabuleiro.tamanho){
-                results.add(p.nome + " " + p.posicao);
+                results.add(p.nome);
             }
             else{
                 restantes.add(p.nome + " " + p.posicao);

@@ -52,7 +52,7 @@
     "Application.Unnamed.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.Teste.executor": "Run",
-    "JUnit.Teste.testDrop_GameOver.executor": "Run",
+    "JUnit.Teste.testDrop_GameOver.executor": "Coverage",
     "JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao.executor": "Run",
     "JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format.executor": "Run",
     "JUnit.Teste.testGetSlotInfo.executor": "Run",
@@ -218,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762098621762</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="att">
+      <option name="closed" value="true" />
+      <created>1762099917164</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1762099917164</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,5 +244,8 @@
     <MESSAGE value="teste BC" />
     <MESSAGE value="att" />
     <option name="LAST_COMMIT_MESSAGE" value="att" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/LP2_22308945_22401482$Teste_testDrop_GameOver.ic" NAME="Teste.testDrop_GameOver Coverage Results" MODIFIED="1762099831184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
