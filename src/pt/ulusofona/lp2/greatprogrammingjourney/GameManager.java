@@ -39,7 +39,7 @@ public class GameManager {
                 linguagens.add(lang.trim());
             }
             Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].trim().toUpperCase());
-            jogadores[i] = new Player(id, nome, linguagens, cor, 0, true);
+            jogadores[i] = new Player(id, nome, linguagens, cor, 1, true);
         }
         return true;
     }
