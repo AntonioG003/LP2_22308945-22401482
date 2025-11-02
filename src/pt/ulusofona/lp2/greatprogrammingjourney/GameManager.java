@@ -92,11 +92,9 @@ public class GameManager {
         }
         ArrayList<String> jogadoresPosition = new ArrayList<String>();
         String []resultado = new String[1];
-        int count = 0;
         for (Player p : jogadores) {
             if (p.posicao == position){
             jogadoresPosition.add(""+p.id);
-            count++;
             }
         }
         resultado[0] = String.join(",", jogadoresPosition);
@@ -137,6 +135,7 @@ public class GameManager {
     }
 
     public ArrayList<String> getGameResults() {
+        ArrayList<String> restantes = new ArrayList<String>();
         ArrayList<String> results = new ArrayList<>();
         results.add("THE GREAT PROGRAMMING JOURNEY");
         results.add("");
@@ -144,14 +143,21 @@ public class GameManager {
         results.add("0");
         results.add("");
         results.add("VENCEDOR");
-        results.add("Nenhum");
-        results.add("");
-        results.add("RESTANTES");
         if (jogadores != null) {
-            for (Player p : jogadores) {
+        for (Player p : jogadores) {
+            if (p.posicao== tabuleiro.tamanho){
                 results.add(p.nome + " " + p.posicao);
             }
+            else{
+                restantes.add(p.nome + " " + p.posicao);
+            }
         }
+        }else{
+        results.add("Nenhum");
+        }
+        results.add("");
+        results.add("RESTANTES");
+        results.addAll(restantes);
         return results;
     }
 
