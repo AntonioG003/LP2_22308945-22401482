@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="att">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestGameManager.java/src/Teste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestGameManager.java/src/Teste.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +59,7 @@
     "JUnit.Teste.testDrop_GameOver.executor": "Run",
     "JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao.executor": "Run",
     "JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format.executor": "Run",
+    "JUnit.Teste.testGetSlotInfo.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -84,7 +87,7 @@
       <recent name="C:\Users\agmz_\OneDrive\Área de Trabalho\lusofona24-25\fundamentos\LP2_22308945-22401482\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Teste.testDrop_GameOver">
+  <component name="RunManager" selected="JUnit.Teste.testGetSlotInfo">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-24" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -133,8 +136,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Teste.testGetSlotInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TestGameManager.java" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Teste" />
+      <option name="METHOD_NAME" value="testGetSlotInfo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Teste.testGetSlotInfo" />
         <item itemvalue="JUnit.Teste.testDrop_GameOver" />
         <item itemvalue="JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao" />
         <item itemvalue="JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format" />
@@ -148,6 +162,9 @@
         <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
       </set>
     </attachedChunks>
+  </component>
+  <component name="SliceToolwindowSettings">
+    <option name="autoScroll" value="true" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -181,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762009954441</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="att">
+      <option name="closed" value="true" />
+      <created>1762094766349</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762094766349</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,5 +224,16 @@
     <MESSAGE value="teste BC" />
     <MESSAGE value="att" />
     <option name="LAST_COMMIT_MESSAGE" value="att" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/TestGameManager.java/src/Teste.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -90,14 +90,23 @@ public class GameManager {
         if (tabuleiro == null || position < 1 || position > tabuleiro.tamanho) {
             return null;
         }
-            String jogadoresNoTabuleiro = "";
+            String[] jogadoresNoTabuleiro;
+            int quantidadeJogadores = 0;
+            int i = 0;
             for (Player p : jogadores) {
                 if (p.posicao == position){
-                    jogadoresNoTabuleiro += p.id;
+                    quantidadeJogadores++;
                 }
             }
+            jogadoresNoTabuleiro= new String[quantidadeJogadores];
+        for (Player p : jogadores) {
+            if (p.posicao == position){
+              jogadoresNoTabuleiro[i] = ""+p.id;
+              i++;
+            }
+        }
         String[] slotInfo = new String[3];
-        slotInfo[0] = jogadoresNoTabuleiro;
+        slotInfo[0] = ""+ position;
         slotInfo[1] = "EMPTY";
         slotInfo[2] = "Espaço vazio";
         if (position == 1) {
@@ -107,7 +116,7 @@ public class GameManager {
             slotInfo[1] = "GLORY";
             slotInfo[2] = "Chegada! Vitória 🎉";
         }
-        return slotInfo;
+        return jogadoresNoTabuleiro;
     }
 
     public int getCurrentPlayerID() {

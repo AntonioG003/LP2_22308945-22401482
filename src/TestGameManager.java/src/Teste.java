@@ -106,10 +106,24 @@ public class Teste {
                 {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
                 {"2", "Ada", "Python; C", "Green"}
         };
-        gm.createInitialBoard(jogadores, 6);
-        for (int i = 0; i < 5; i++) {
+        gm.createInitialBoard(jogadores, 5);
+        for (int i = 0; i < 9; i++) {
             gm.moveCurrentPlayer(1);
         }
         assertTrue(gm.gameIsOver());
+    }
+    @Test
+    void testGetSlotInfo(){
+        String[] resultadoExperado = new String[3];
+        resultadoExperado[0] = "1,2";
+        resultadoExperado[1] = "START";
+        resultadoExperado[2] = "Início do tabuleiro";
+        String[][] jogadores = {
+                {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
+                {"2", "Ada", "Python; C", "Green"}
+        };
+        gm.createInitialBoard(jogadores, 5);
+        String []resultado = gm.getSlotInfo(1);
+        assertEquals(resultadoExperado,resultado, resultadoExperado[0] +" , "+ resultado[0]);
     }
 }
