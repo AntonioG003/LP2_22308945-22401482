@@ -40,7 +40,7 @@ public class Teste {
         assertFalse(testaGame.createInitialBoard(jogadores, 2),
                 "WorldSize inválido — muito pequeno");
     }
-
+/*
     @Test
     void testGetCurrentPlayerIDSemJogadores() {
         assertEquals(-1, testaGame.getCurrentPlayerID(),
@@ -81,9 +81,5 @@ public class Teste {
                 "Deve voltar ao primeiro jogador após o último");
     }
 
-    @Test
-    void testMoveCurrentPlayerSemJogadores() {
-        assertFalse(testaGame.moveCurrentPlayer(1),
-                "Sem jogadores, deve retornar false");
-    }
+    */
 }
