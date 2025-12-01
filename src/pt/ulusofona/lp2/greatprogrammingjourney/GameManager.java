@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static pt.ulusofona.lp2.greatprogrammingjourney.Player.recebePlayer;
-import static pt.ulusofona.lp2.greatprogrammingjourney.Player.ricochete;
+import static pt.ulusofona.lp2.greatprogrammingjourney.Player.*;
 import static pt.ulusofona.lp2.greatprogrammingjourney.Tabuleiro.tamanhoTabuleiro;
+import static pt.ulusofona.lp2.greatprogrammingjourney.Tabuleiro.verificaAbbys;
 
 public class GameManager {
 
@@ -20,29 +20,15 @@ public class GameManager {
     int turno= 1;
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-        if (playerInfo == null || playerInfo.length < jogadoresMinimos || playerInfo.length > jogadoresMaximos) {
+        if (!recebePlayer(playerInfo)) {
             return false;
         }
         if (!tamanhoTabuleiro(playerInfo, worldSize)) {
             return false;
         }
-        this.tabuleiro = new Tabuleiro();
-        this.tabuleiro.tamanho = worldSize;
-        if (!recebePlayer(playerInfo)) {
-            return false;
-        }
-        jogadores = new Player[playerInfo.length];
-        for (int i = 0; i < playerInfo.length; i++) {
-            int id = Integer.parseInt(playerInfo[i][0]);
-            String nome = playerInfo[i][1];
-            String[] linguagensStr = playerInfo[i][2].split(";");
-            ArrayList<String> linguagens = new ArrayList<>();
-            for (String lang : linguagensStr) {
-                linguagens.add(lang.trim());
-            }
-            Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].trim().toUpperCase());
-            jogadores[i] = new Player(id, nome, linguagens, cor, 1, true);
-        }
+        this.tabuleiro = new Tabuleiro(worldSize);
+
+        jogadores=guardaPlayer(playerInfo);
         return true;
     }
 
@@ -116,9 +102,6 @@ public class GameManager {
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if (jogadores == null || jogadores.length == 0 || tabuleiro == null) {
-            return false;
-        }
         jogadores[jogadorAtual].posicao =
                 ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
@@ -174,7 +157,19 @@ public class GameManager {
     }
 
 
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools){
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abbysesAndTools){
+        if (!recebePlayer(playerInfo)) {
+            return false;
+        }
+        if (!tamanhoTabuleiro(playerInfo, worldSize)) {
+            return false;
+        }
+        if(!verificaAbbys(abbysesAndTools, worldSize)|| verificaTool(abbysesAndTools, worldSize)){
+            return false;
+        }
+        this.tabuleiro = new Tabuleiro(worldSize);
+
+        jogadores=guardaPlayer(playerInfo);
         return true;
     }
     public String getProgrammersInfo(){

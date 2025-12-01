@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="att">
-      <change afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Abbys.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LP2_22308945-22401482.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LP2_22308945-22401482.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/LP2-GuiViewer2526-p1-1.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.java" afterDir="false" />
-    </list>
+    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="att" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,6 +194,7 @@
       <workItem from="1763267862933" duration="4786000" />
       <workItem from="1763577794200" duration="350000" />
       <workItem from="1763664245257" duration="234000" />
+      <workItem from="1764188543152" duration="998000" />
     </task>
     <task id="LOCAL-00001" summary="teste BC">
       <option name="closed" value="true" />
@@ -308,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762121686800</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="att">
+      <option name="closed" value="true" />
+      <created>1764188598520</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1764188598520</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
