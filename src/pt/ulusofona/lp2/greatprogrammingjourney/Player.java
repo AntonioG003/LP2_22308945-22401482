@@ -39,12 +39,17 @@ public class Player {
         };
     }
 
-    public String getProgrammerInfoAsStr() {
-        String linguagensStr = String.join("; ", linguagem);
-        Tools.sortArray(ferramentas);
-        String ferramentasStr = String.join("; ", ferramentas.toString());
-        String estadoStr = estado ? "Em Jogo" : "Derrotado";
-        return id + " | " + nome + " | " + posicao + " | " + ferramentasStr +"|"+ linguagensStr + " | " + estadoStr;
+    public static String ProgrammerInfoAsStr(Player jogador) {
+        String linguagensStr = String.join("; ", jogador.linguagem);
+        Tools.sortArray(jogador.ferramentas);
+        String ferramentasStr = String.join("; ", jogador.ferramentas.toString());
+        String estadoStr = jogador.estado ? "Em Jogo" : "Derrotado";
+        if (jogador.ferramentas==null){
+            return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | No tools | "+
+                    linguagensStr + " | " + estadoStr;
+        }
+        return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | " +
+                ferramentasStr +"|"+ linguagensStr + " | " + estadoStr;
     }
 
     public static boolean recebePlayer(String[][] playerInfo) {
