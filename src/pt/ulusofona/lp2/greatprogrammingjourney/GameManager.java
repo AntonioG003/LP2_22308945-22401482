@@ -3,32 +3,33 @@ package pt.ulusofona.lp2.greatprogrammingjourney;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static pt.ulusofona.lp2.greatprogrammingjourney.Player.*;
-import static pt.ulusofona.lp2.greatprogrammingjourney.Tabuleiro.tamanhoTabuleiro;
-import static pt.ulusofona.lp2.greatprogrammingjourney.Tabuleiro.verificaAbbys;
+
+
+
 
 public class GameManager {
 
     Tabuleiro tabuleiro;
-    Player[] jogadores;
     final int jogadoresMinimos = 2;
     final int jogadoresMaximos = 4;
     int jogadorAtual = 0;
     int turno= 1;
-
+    Player[] jogadores;
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-        if (!recebePlayer(playerInfo)) {
+        if (!Player.recebePlayer(playerInfo)) {
             return false;
         }
-        if (!tamanhoTabuleiro(playerInfo, worldSize)) {
+        if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) {
             return false;
         }
         this.tabuleiro = new Tabuleiro(worldSize);
 
-        jogadores=guardaPlayer(playerInfo);
+        jogadores=Player.guardaPlayer(playerInfo);
         return true;
     }
 
@@ -103,7 +104,7 @@ public class GameManager {
 
     public boolean moveCurrentPlayer(int nrSpaces) {
         jogadores[jogadorAtual].posicao =
-                ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
+                Player.ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
         turno++;
         return true;
@@ -158,22 +159,26 @@ public class GameManager {
 
 
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abbysesAndTools){
-        if (!recebePlayer(playerInfo)) {
+        if (!Player.recebePlayer(playerInfo)) {
             return false;
         }
-        if (!tamanhoTabuleiro(playerInfo, worldSize)) {
+        if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) {
             return false;
         }
-        if(!verificaAbbys(abbysesAndTools, worldSize)|| verificaTool(abbysesAndTools, worldSize)){
+        if(!Tabuleiro.verificaAbbys(abbysesAndTools, worldSize)|| Player.verificaTool(abbysesAndTools, worldSize)){
             return false;
         }
         this.tabuleiro = new Tabuleiro(worldSize);
 
-        jogadores=guardaPlayer(playerInfo);
+        jogadores=Player.guardaPlayer(playerInfo);
         return true;
     }
     public String getProgrammersInfo(){
-        return "olá";
+        String resultado = "";
+        for (Player p : jogadores) {
+                resultado += p.getProgrammerInfoAsStr();
+        }
+        return null;
     }
     public String reactToAbyssOrTool(){
         return "olá";
@@ -187,6 +192,13 @@ public class GameManager {
 
     }
     public boolean saveGame(File file){
+        try (FileWriter myWriter = new FileWriter(file)) {
+            myWriter.write("\nAppended text!");
+            System.out.println("Successfully appended to the file.");
+        } catch (IOException _) {
+
+        }
+
         return true;
     }
 }

@@ -15,7 +15,7 @@ public class Player {
     Cores cor;
     int posicao;
     boolean estado;
-    ArrayList<Tools> ferramentas;
+    Tools[] ferramentas;
 
     public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
         this.id = id;
@@ -41,8 +41,10 @@ public class Player {
 
     public String getProgrammerInfoAsStr() {
         String linguagensStr = String.join("; ", linguagem);
+        Tools.sortArray(ferramentas);
+        String ferramentasStr = String.join("; ", ferramentas.toString());
         String estadoStr = estado ? "Em Jogo" : "Derrotado";
-        return id + " | " + nome + " | " + posicao + " | " + linguagensStr + " | " + estadoStr;
+        return id + " | " + nome + " | " + posicao + " | " + ferramentasStr +"|"+ linguagensStr + " | " + estadoStr;
     }
 
     public static boolean recebePlayer(String[][] playerInfo) {
@@ -83,17 +85,17 @@ public class Player {
     }
     public static boolean verificaTool(String[][] abbysAndTools, int worldsize){
         int posicao,posicao1,posicao2;
-        for(int i=0; i< abbysAndTools.length; i++){
+        for (String[] abbysAndTool : abbysAndTools) {
             posicao = posicao1 = posicao2 = -1;
-            for(int j = 0; j< 3; j++){
-                if(!abbysAndTools[i][j].matches("\\d+")){
+            for (int j = 0; j < 3; j++) {
+                if (!abbysAndTool[j].matches("\\d+")) {
                     return false;
                 }
             }
-            posicao =Integer.parseInt(abbysAndTools[i][0]);
-            posicao1 =Integer.parseInt(abbysAndTools[i][1]);
-            posicao2 =Integer.parseInt(abbysAndTools[i][2]);
-            if (posicao!= 1||posicao1<0||posicao1>5|| posicao2>worldsize || posicao2<0){
+            posicao = Integer.parseInt(abbysAndTool[0]);
+            posicao1 = Integer.parseInt(abbysAndTool[1]);
+            posicao2 = Integer.parseInt(abbysAndTool[2]);
+            if (posicao != 1 || posicao1 < 0 || posicao1 > 5 || posicao2 > worldsize || posicao2 < 0) {
                 return false;
             }
         }
@@ -101,8 +103,8 @@ public class Player {
     }
     public String imprimePlayerFerramentas(){
         StringBuilder resultado = new StringBuilder(nome);
-        for (Tools toll: ferramentas){
-            resultado.append(";").append(toll.getTitulo());
+        for (int i = 0; i< ferramentas.length; i++){
+            //resultado.append(";").append(ferramentas[].getTitulo(i));
         }
 
         return resultado.toString();

@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="att" />
+    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="att">
+      <change afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/FileGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,36 +53,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;JUnit.Teste.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.Teste.testDrop_GameOver.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.Teste.testGetSlotInfo.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/agmz_/OneDrive/Área de Trabalho/lusofona24-25/fundamentos/LP2_22308945-22401482&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Unnamed.executor": "Run",
+    "Application.greatprorammingjourny_2.executor": "Debug",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.Teste.executor": "Run",
+    "JUnit.Teste.testDrop_GameOver.executor": "Run",
+    "JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao.executor": "Run",
+    "JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format.executor": "Run",
+    "JUnit.Teste.testGetSlotInfo.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/agmz_/OneDrive/Área de Trabalho/lusofona24-25/fundamentos/LP2_22308945-22401482",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\agmz_\OneDrive\Área de Trabalho\lusofona24-25\fundamentos\LP2_22308945-22401482" />
@@ -152,12 +163,12 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.greatprorammingjourny_2" />
       <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.greatprorammingjourny_2" />
       <item itemvalue="JUnit.Teste" />
       <item itemvalue="JUnit.Teste.testDrop_GameOver" />
-      <item itemvalue="JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format" />
       <item itemvalue="JUnit.Teste.testDrop_MoveCurrentPlayer_Posicao" />
+      <item itemvalue="JUnit.Teste.testDrop_getProgrammerInfoAsStr_Format" />
       <item itemvalue="JUnit.Teste.testGetSlotInfo" />
     </list>
     <recent_temporary>
@@ -195,6 +206,14 @@
       <workItem from="1763577794200" duration="350000" />
       <workItem from="1763664245257" duration="234000" />
       <workItem from="1764188543152" duration="998000" />
+      <workItem from="1764455139660" duration="19339000" />
+      <workItem from="1764607385729" duration="148000" />
+      <workItem from="1764874483185" duration="30000" />
+      <workItem from="1764876145526" duration="2000" />
+      <workItem from="1764967102375" duration="3000" />
+      <workItem from="1764967111432" duration="3585000" />
+      <workItem from="1765033177619" duration="6284000" />
+      <workItem from="1765199039372" duration="13202000" />
     </task>
     <task id="LOCAL-00001" summary="teste BC">
       <option name="closed" value="true" />
@@ -300,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764188598520</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="att">
+      <option name="closed" value="true" />
+      <created>1764599612883</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1764599612883</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +348,46 @@
     <MESSAGE value="teste BC" />
     <MESSAGE value="att" />
     <option name="LAST_COMMIT_MESSAGE" value="att" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java</url>
+          <line>41</line>
+          <properties class="pt.ulusofona.lp2.greatprogrammingjourney.Player" method="getProgrammerInfoAsStr">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LP2_22308945_22401482$Teste_testDrop_GameOver.ic" NAME="Teste.testDrop_GameOver Coverage Results" MODIFIED="1762099831184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
