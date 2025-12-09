@@ -39,15 +39,15 @@ public class Player {
         };
     }
 
-    public static String ProgrammerInfoAsStr(Player jogador) {
+    public static String programmerInfoAsStr(Player jogador) {
         String linguagensStr = String.join("; ", jogador.linguagem);
-        Tools.sortArray(jogador.ferramentas);
-        String ferramentasStr = String.join("; ", jogador.ferramentas.toString());
         String estadoStr = jogador.estado ? "Em Jogo" : "Derrotado";
         if (jogador.ferramentas==null){
             return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | No tools | "+
                     linguagensStr + " | " + estadoStr;
         }
+        Tools.sortArray(jogador.ferramentas);
+        String ferramentasStr = String.join("; ", jogador.ferramentas.toString());
         return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | " +
                 ferramentasStr +"|"+ linguagensStr + " | " + estadoStr;
     }

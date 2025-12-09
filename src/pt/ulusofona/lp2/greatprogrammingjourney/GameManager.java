@@ -70,7 +70,7 @@ public class GameManager {
         }
         for (Player p : jogadores) {
             if (p != null && p.id == id) {
-                return Player.ProgrammerInfoAsStr(p);
+                return Player.programmerInfoAsStr(p);
             }
         }
         return null;
@@ -176,7 +176,7 @@ public class GameManager {
     public String getProgrammersInfo(){
         String resultado = "";
         for (Player p : jogadores) {
-                resultado += Player.ProgrammerInfoAsStr(p);
+                resultado += Player.programmerInfoAsStr(p);
         }
         return null;
     }
