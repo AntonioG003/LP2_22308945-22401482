@@ -192,12 +192,6 @@ public class GameManager {
 
     }
     public boolean saveGame(File file){
-        try (FileWriter myWriter = new FileWriter(file)) {
-            myWriter.write("\nAppended text!");
-            System.out.println("Successfully appended to the file.");
-        } catch (IOException E) {
-
-        }
 
         return true;
     }
