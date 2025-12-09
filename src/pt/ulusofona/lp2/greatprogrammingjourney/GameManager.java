@@ -184,7 +184,7 @@ public class GameManager {
         return "olá";
     }
 
-    public void loadGame(File file) throws FileNotFoundException{
+    public void loadGame(File file) throws InvalidFileException, FileNotFoundException{
 
     }
     public boolean saveGame(File file){
