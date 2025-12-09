@@ -32,7 +32,7 @@ public class Abbys  {
 
         }
     }
-    public void erroDeSintaxe(Player[] jogadores, Tabuleiro tabuleiro){
+    public static void erroDeSintaxe(Player[] jogadores, Tabuleiro tabuleiro){
 
     }
 }

@@ -109,4 +109,7 @@ public class Player {
 
         return resultado.toString();
     }
+    public static boolean procuraFerramenta(int id, Player oi){
+        return true;
+    }
 }

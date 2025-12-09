@@ -22,6 +22,17 @@ public class Tabuleiro {
         }
         return true;
     }
+    public static String[][] guardaAbbys(String[][]abbysAndTools, int worldsize){
+        String[][] resultado = new String[abbysAndTools.length][3];
+        for(int i=0; i< abbysAndTools.length; i++){
+            if(Integer.parseInt(abbysAndTools[i][0])== 0){
+                resultado[i][0] = abbysAndTools[i][0];
+                resultado[i][1] = abbysAndTools[i][1];
+                resultado[i][2] = abbysAndTools[i][2];
+            }
+        }
+        return resultado;
+    }
     public static boolean tamanhoTabuleiro(String[][] playerInfo, int worldSize) {
         return (worldSize >= (2 * playerInfo.length));
     }
@@ -32,6 +43,10 @@ public class Tabuleiro {
 
     public Tabuleiro(int tamanho, String[][] abbys) {
         this.tamanho = tamanho;
+        this.abbys = abbys;
+    }
+
+    public void setAbbys(String[][] abbys) {
         this.abbys = abbys;
     }
 }
