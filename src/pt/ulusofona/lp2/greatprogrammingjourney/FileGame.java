@@ -9,7 +9,7 @@ public class FileGame {
         try (FileWriter myWriter = new FileWriter("filename.txt", true)) {
             myWriter.write("\nAppended text!");
             System.out.println("Successfully appended to the file.");
-        } catch (IOException _) {
+        } catch (IOException E) {
 
         }
         return new File("oi");
