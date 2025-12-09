@@ -183,12 +183,8 @@ public class GameManager {
     public String reactToAbyssOrTool(){
         return "olá";
     }
-    class InvalidFileException extends Exception {
-        public InvalidFileException(String message) {
-            super(message);
-        }
-    }
-    public void loadGame(File file) throws InvalidFileException, FileNotFoundException{
+
+    public void loadGame(File file) throws FileNotFoundException{
 
     }
     public boolean saveGame(File file){
