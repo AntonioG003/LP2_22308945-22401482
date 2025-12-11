@@ -152,7 +152,6 @@ public class GameManager {
     public JPanel getAuthorsPanel() {
         return null;
     }
-// lll
     public HashMap<String, String> customizeBoard() {
         return new HashMap<>();
     }
@@ -165,7 +164,7 @@ public class GameManager {
         if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) {
             return false;
         }
-        if(!Tabuleiro.verificaAbbys(abbysesAndTools, worldSize)|| Player.verificaTool(abbysesAndTools, worldSize)){
+        if(!Tabuleiro.verificaAbbys(abbysesAndTools, worldSize)|| !Player.verificaTool(abbysesAndTools, worldSize)){
             return false;
         }
         this.tabuleiro = new Tabuleiro(worldSize);

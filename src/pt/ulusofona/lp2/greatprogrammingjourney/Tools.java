@@ -8,6 +8,7 @@ public class Tools {
     String descricao;
     String efeito;
     int estado;
+    int posicao;
 
     public String getTitulo() {
         return titulo;
@@ -16,6 +17,14 @@ public class Tools {
     @Override
     public String toString() {
         return titulo;
+    }
+
+    public Tools(int id, String titulo, int estado, int posicao, String efeito) {
+        this.id = id;
+        this.titulo = titulo;
+        this.estado = estado;
+        this.posicao = posicao;
+        this.efeito = efeito;
     }
 
     public static void sortArray(Tools[] lista) {
@@ -36,5 +45,15 @@ public class Tools {
 
             }
         }
+    }
+    public static Tools[] guardaTools(String[][]abbysAndTools){
+        Tools[] resultado = new Tools[7];
+        int j =0;
+        for (int i = 0; i< abbysAndTools.length; i++){
+            if (Integer.parseInt(abbysAndTools[i][0]) == 1){
+             //   resultado[j] = new Tools()
+            }
+        }
+        return null;
     }
 }

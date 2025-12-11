@@ -3,7 +3,8 @@ import java.lang.String;
 
 public class Tabuleiro {
     int tamanho;
-    String[][] abbys;
+    Abbys[] abbys;
+    Tools[] ferramentas;
     public static boolean verificaAbbys(String[][]abbysAndTools, int worldsize){
         int posicao,posicao1,posicao2;
         for(int i=0; i< abbysAndTools.length; i++){
@@ -22,7 +23,7 @@ public class Tabuleiro {
         }
         return true;
     }
-    public static String[][] guardaAbbys(String[][]abbysAndTools, int worldsize){
+   /* public static String[][] guardaAbbys(String[][]abbysAndTools, int worldsize){
         String[][] resultado = new String[abbysAndTools.length][3];
         for(int i=0; i< abbysAndTools.length; i++){
             if(Integer.parseInt(abbysAndTools[i][0])== 0){
@@ -32,7 +33,7 @@ public class Tabuleiro {
             }
         }
         return resultado;
-    }
+    }*/
     public static boolean tamanhoTabuleiro(String[][] playerInfo, int worldSize) {
         return (worldSize >= (2 * playerInfo.length));
     }
@@ -41,12 +42,12 @@ public class Tabuleiro {
         this.tamanho = tamanho;
     }
 
-    public Tabuleiro(int tamanho, String[][] abbys) {
+    public Tabuleiro(int tamanho, Abbys[] abbys) {
         this.tamanho = tamanho;
         this.abbys = abbys;
     }
 
-    public void setAbbys(String[][] abbys) {
+    public void setAbbys(Abbys[] abbys) {
         this.abbys = abbys;
     }
 }

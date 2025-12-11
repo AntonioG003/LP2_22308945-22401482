@@ -5,8 +5,32 @@ public class Abbys  {
     String titulo;
     String efeito;
     String descricao;
-    int estado;
+    boolean estado;
+    int posicao;
 
+    public Abbys(int id, String titulo, String efeito, String descricao, int posicao) {
+        this.id = id;
+        this.titulo = titulo;
+        this.efeito = efeito;
+        this.descricao = descricao;
+        this.estado = true;
+        this.posicao = posicao;
+    }
+
+    public static Abbys[] guardaAbbys(String[][]abbysAndTools, int worldsize){
+        Abbys[] resultado = new Abbys[worldsize];
+        int j =0;
+        int id;
+        int posicao;
+        for (int i = 0; i< abbysAndTools.length; i++){
+            if (Integer.parseInt(abbysAndTools[i][0]) == 0){
+                id = Integer.parseInt(abbysAndTools[i][1]);
+                posicao = Integer.parseInt(abbysAndTools[i][2]);
+                   resultado[j] = new Abbys(id,"por implementar", "por implementar", "...",posicao );
+            }
+        }
+        return null;
+    }
     public static void reageAbbys(String[] Abbys, Player[] jogadores, Tabuleiro tabuleiro){
         switch (Abbys[1]){
             case "0":
