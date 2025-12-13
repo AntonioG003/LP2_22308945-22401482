@@ -53,10 +53,7 @@ public class Player {
     }
 
     public static boolean recebePlayer(String[][] playerInfo) {
-        if (playerInfo == null){
-            return false;
-        }
-        if (playerInfo.length < 2 || playerInfo.length > 4){
+        if (playerInfo == null || playerInfo.length < 2) {
             return false;
         }
         return true;

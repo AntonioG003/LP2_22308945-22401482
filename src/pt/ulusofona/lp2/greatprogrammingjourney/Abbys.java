@@ -26,7 +26,7 @@ public class Abbys  {
             if (Integer.parseInt(abbysAndTools[i][0]) == 0){
                 id = Integer.parseInt(abbysAndTools[i][1]);
                 posicao = Integer.parseInt(abbysAndTools[i][2]);
-                   resultado[j] = new Abbys(id,"por implementar", "por implementar", "...",posicao );
+                resultado[j] = new Abbys(id,"por implementar", "por implementar", "...",posicao );
             }
         }
         return null;

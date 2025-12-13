@@ -51,7 +51,7 @@ public class Tools {
         int j =0;
         for (int i = 0; i< abbysAndTools.length; i++){
             if (Integer.parseInt(abbysAndTools[i][0]) == 1){
-             //   resultado[j] = new Tools()
+                //   resultado[j] = new Tools()
             }
         }
         return null;

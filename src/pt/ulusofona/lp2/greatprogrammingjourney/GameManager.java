@@ -21,17 +21,44 @@ public class GameManager {
     int turno= 1;
     Player[] jogadores;
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-        if (!Player.recebePlayer(playerInfo)) {
-            return false;
-        }
-        if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) {
-            return false;
-        }
-        this.tabuleiro = new Tabuleiro(worldSize);
+        int currentPlayerIndex = -1;
+        ArrayList<Integer> ids = new ArrayList<>();
 
-        jogadores=Player.guardaPlayer(playerInfo);
+        for (String[] p : playerInfo) {
+
+            if (p == null || p.length < 4) {
+                return false;
+            }
+
+            int id;
+            try {
+                id = Integer.parseInt(p[0]);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+
+            if (id <= 0 || ids.contains(id)) {
+                return false;
+            }
+
+            ids.add(id);
+
+            String nome = p[1];
+            String linguagens = p[2];
+            String corStr = p[3];
+
+            Player.Cores cor;
+            try {
+                cor = Player.Cores.valueOf(corStr.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+            return true;
+        }
+
         return true;
     }
+
 
     public String getImagePng(int nrSquare) {
         if (tabuleiro == null || nrSquare < 1 || nrSquare > this.tabuleiro.tamanho) {
@@ -84,7 +111,7 @@ public class GameManager {
         String []resultado = new String[1];
         for (Player p : jogadores) {
             if (p.posicao == position){
-            jogadoresPosition.add(""+p.id);
+                jogadoresPosition.add(""+p.id);
             }
         }
         resultado[0] = String.join(",", jogadoresPosition);
@@ -132,16 +159,16 @@ public class GameManager {
         results.add("");
         results.add("VENCEDOR");
         if (jogadores != null) {
-        for (Player p : jogadores) {
-            if (p.posicao== tabuleiro.tamanho){
-                results.add(p.nome);
+            for (Player p : jogadores) {
+                if (p.posicao== tabuleiro.tamanho){
+                    results.add(p.nome);
+                }
+                else{
+                    restantes.add(p.nome + " " + p.posicao);
+                }
             }
-            else{
-                restantes.add(p.nome + " " + p.posicao);
-            }
-        }
         }else{
-        results.add("Nenhum");
+            results.add("Nenhum");
         }
         results.add("");
         results.add("RESTANTES");
@@ -175,7 +202,7 @@ public class GameManager {
     public String getProgrammersInfo(){
         String resultado = "";
         for (Player p : jogadores) {
-                resultado += Player.programmerInfoAsStr(p);
+            resultado += Player.programmerInfoAsStr(p);
         }
         return null;
     }
