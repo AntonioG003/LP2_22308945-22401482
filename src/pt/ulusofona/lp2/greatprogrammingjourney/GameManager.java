@@ -20,6 +20,7 @@ public class GameManager {
     int jogadorAtual = 0;
     int turno= 1;
     Player[] jogadores;
+
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         if (!Player.recebePlayer(playerInfo)) {
             return false;
@@ -32,6 +33,7 @@ public class GameManager {
         jogadores=Player.guardaPlayer(playerInfo);
         return true;
     }
+
 
     public String getImagePng(int nrSquare) {
         if (tabuleiro == null || nrSquare < 1 || nrSquare > this.tabuleiro.tamanho) {
