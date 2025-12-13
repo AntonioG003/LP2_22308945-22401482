@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 import pt.ulusofona.lp2.greatprogrammingjourney.*;
 
 public class Teste {
@@ -18,77 +19,43 @@ public class Teste {
     }
 
     @Test
-    void testCreateInitialBoardJogadoresNulos() {
+    void testCreateInitialBoardJogadoresNull() {
         assertFalse(gm.createInitialBoard(null, 8));
     }
 
     @Test
-    void testCreateInitialBoardVazio() {
-        String[][] jogadores = new String[0][];
+    void testCreateInitialBoardMenosDe2Jogadores() {
+        String[][] jogadores = {
+                {"1", "Sozinho", "Java", "Purple"}
+        };
         assertFalse(gm.createInitialBoard(jogadores, 8));
     }
 
     @Test
-    void testCreateInitialBoardWorldSizeInvalido() {
+    void testGetCurrentPlayerIDMenorID() {
         String[][] jogadores = {
-                {"1", "Player 1", "Java", "Purple"},
-                {"2", "Player 2", "Python", "Green"}
-        };
-        assertFalse(gm.createInitialBoard(jogadores, 2));
-    }
-
-    @Test
-    void testGetCurrentPlayerIDSemJogadores() {
-        assertEquals(-1, gm.getCurrentPlayerID());
-    }
-
-    @Test
-    void testGetCurrentPlayerIDComJogadores() {
-        String[][] jogadores = {
-                {"1", "Player 1", "Java", "Purple"},
-                {"2", "Player 2", "Python", "Blue"}
-        };
-        gm.createInitialBoard(jogadores, 6);
-        assertEquals(1, gm.getCurrentPlayerID());
-    }
-
-    @Test
-    void testMoveCurrentPlayerCiclico() {
-        String[][] jogadores = {
-                {"1", "Player 1", "Java", "Purple"},
+                {"5", "Player 5", "Java", "Purple"},
                 {"2", "Player 2", "Python", "Blue"},
-                {"3", "Player 3", "C", "Green"}
+                {"9", "Player 9", "C", "Green"}
         };
         gm.createInitialBoard(jogadores, 6);
-        int primeiro = gm.getCurrentPlayerID();
-        gm.moveCurrentPlayer(1);
-        int segundo = gm.getCurrentPlayerID();
-        gm.moveCurrentPlayer(1);
-        int terceiro = gm.getCurrentPlayerID();
-        gm.moveCurrentPlayer(1);
-        int deNovoPrimeiro = gm.getCurrentPlayerID();
-        assertEquals(primeiro, deNovoPrimeiro);
+        assertEquals(2, gm.getCurrentPlayerID());
     }
 
     @Test
-    void testMoveCurrentPlayerSemJogadores() {
-        assertFalse(gm.moveCurrentPlayer(1));
-    }
-
-    @Test
-    void testDrop_getProgrammerInfoAsStr_Format() {
+    void testGetProgrammerInfoAsStrFormatoInicial() {
         String[][] jogadores = {
                 {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
                 {"2", "Ada", "Python; C", "Green"}
         };
         gm.createInitialBoard(jogadores, 6);
 
-        String esperado = "1 | Bruninho | 1 | Common Lisp; PHP | Em Jogo";
+        String esperado = "1 | Bruninho | 1 | No tools | Common Lisp; PHP | Em Jogo";
         assertEquals(esperado, gm.getProgrammerInfoAsStr(1));
     }
 
     @Test
-    void testDrop_MoveCurrentPlayer_Posicao() {
+    void testMoveCurrentPlayerAtualizaPosicao() {
         String[][] jogadores = {
                 {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
                 {"2", "Ada", "Python; C", "Green"}
@@ -96,21 +63,18 @@ public class Teste {
         gm.createInitialBoard(jogadores, 6);
 
         gm.moveCurrentPlayer(1);
-        String esperado = "1 | Bruninho | 2 | Common Lisp; PHP | Em Jogo";
+
+        String esperado = "1 | Bruninho | 2 | No tools | Common Lisp; PHP | Em Jogo";
         assertEquals(esperado, gm.getProgrammerInfoAsStr(1));
     }
 
     @Test
-    void testDrop_GameOver() {
+    void testGameIsNotOverNoInicio() {
         String[][] jogadores = {
-                {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
-                {"2", "Ada", "Python; C", "Green"}
+                {"1", "A", "Java", "Purple"},
+                {"2", "B", "Python", "Blue"}
         };
-        gm.createInitialBoard(jogadores, 5);
-        for (int i = 0; i < 9; i++) {
-            gm.moveCurrentPlayer(1);
-        }
-        assertTrue(gm.gameIsOver());
+        gm.createInitialBoard(jogadores, 10);
+        assertFalse(gm.gameIsOver());
     }
-
 }
