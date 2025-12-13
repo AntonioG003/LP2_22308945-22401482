@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="09/12/2025- 21:50">
+    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="11/12/2025- 20:17">
+      <change afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Ecreve.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Abbys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Abbys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +211,7 @@
       <workItem from="1764967102375" duration="3000" />
       <workItem from="1764967111432" duration="3585000" />
       <workItem from="1765033177619" duration="6284000" />
-      <workItem from="1765199039372" duration="30587000" />
+      <workItem from="1765199039372" duration="33694000" />
     </task>
     <task id="LOCAL-00001" summary="teste BC">
       <option name="closed" value="true" />
@@ -391,7 +389,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765317043891</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="11/12/2025- 20:17">
+      <option name="closed" value="true" />
+      <created>1765484244088</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1765484244088</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +426,8 @@
     <MESSAGE value="09/12/2025- 19:48" />
     <MESSAGE value="09/12/2025- 21:47" />
     <MESSAGE value="09/12/2025- 21:50" />
-    <option name="LAST_COMMIT_MESSAGE" value="09/12/2025- 21:50" />
+    <MESSAGE value="11/12/2025- 20:17" />
+    <option name="LAST_COMMIT_MESSAGE" value="11/12/2025- 20:17" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LP2_22308945_22401482$Teste_testDrop_GameOver.ic" NAME="Teste.testDrop_GameOver Coverage Results" MODIFIED="1762099831184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
