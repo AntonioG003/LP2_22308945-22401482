@@ -16,7 +16,7 @@ public class Player {
     int posicao;
     boolean estado;
     Tools[] ferramentas;
-    int[] casas = new int[2];
+    int[] casas = {0,0};
 
     public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
         this.id = id;
@@ -116,8 +116,14 @@ public class Player {
 
         return resultado.toString();
     }
-    public static boolean procuraFerramenta(int id, Player oi){
-        return true;
+    public boolean procuraFerramenta(int id){
+        for (Tools t: ferramentas){
+            if (t.id == id){
+
+                return true;
+            }
+        }
+        return false;
     }
     public void casasAndadas(int andou){
         casas[1] = casas[0];

@@ -58,7 +58,10 @@ public class Abbys  {
         }
         return resultado;
     }
-    public static void erroDeSintaxe(Player[] jogadores, Tabuleiro tabuleiro){
-
+    public static void erroDeSintaxe(Player jogador, Tabuleiro tabuleiro){
+        if (jogador.procuraFerramenta(4)){
+            return;
+        }
+        jogador.posicao-=1;
     }
 }

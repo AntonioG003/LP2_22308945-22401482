@@ -103,11 +103,11 @@ public class GameManager {
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
+        jogadores[jogadorAtual].casasAndadas(nrSpaces);
         jogadores[jogadorAtual].posicao =
                 Player.ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
         turno++;
-        jogadores[jogadorAtual].casasAndadas(nrSpaces);
         return true;
     }
 
@@ -181,13 +181,12 @@ public class GameManager {
         return null;
     }
     public String reactToAbyssOrTool(){
-        for( Player p: jogadores){
             for(Abbys a: tabuleiro.abbys){
-                if(p.posicao == a.posicao){
-                    //p.sofre(a.id);
+                if(jogadores[jogadorAtual-1].posicao == a.posicao){
+                    //jogadores[jofadorAtual-1].sofre(a.id);
                 }
             }
-        }
+
         return "olá";
     }
 
