@@ -107,6 +107,7 @@ public class GameManager {
                 Player.ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
         jogadorAtual = (jogadorAtual + 1) % jogadores.length;
         turno++;
+        jogadores[jogadorAtual].casasAndadas(nrSpaces);
         return true;
     }
 
@@ -180,6 +181,13 @@ public class GameManager {
         return null;
     }
     public String reactToAbyssOrTool(){
+        for( Player p: jogadores){
+            for(Abbys a: tabuleiro.abbys){
+                if(p.posicao == a.posicao){
+                    //p.sofre(a.id);
+                }
+            }
+        }
         return "olá";
     }
 

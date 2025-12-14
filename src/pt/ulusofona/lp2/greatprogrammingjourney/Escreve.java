@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
-public class Ecreve {
-    public String[] abbysErroDeSintaxe(int id){
+public class Escreve {
+    public static String[] abbysErroDeSintaxe(){
         String[] resultado = new String[3];
         resultado[0] = "Recua uma casa"; // efeito
         resultado[1] = "Erro de sintaxe";// titulo
@@ -10,7 +10,7 @@ public class Ecreve {
         return resultado;
     }
 
-    public String[] abbysErroDeLogica(int id){
+    public static String[] abbysErroDeLogica(){
         String[] resultado = new String[3];
         resultado[0] = "Recua metade do valodo dado com arrendodamento po baixo"; // efeito
         resultado[1] = "Erro de Lógica";// titulo
@@ -19,7 +19,7 @@ public class Ecreve {
         return resultado;
     }
 
-    public String[] abbysException(int id){
+    public static String[] abbysException(){
         String[] resultado = new String[3];
         resultado[0] = "Recua duas casas"; // efeito
         resultado[1] = "Erro de sintaxe";// titulo
@@ -27,7 +27,7 @@ public class Ecreve {
         // ferramenta = exception Handling
         return resultado;
     }
-    public String[] abbysNotFoundException(int id){
+    public static String[] abbysFileNotFoundException(){
         String[] resultado = new String[3];
         resultado[0] = "Recua três casas"; // efeito
         resultado[1] = "Not Found Exception";// titulo
@@ -35,7 +35,7 @@ public class Ecreve {
         // ferramenta = Exception Handling
         return resultado;
     }
-    public String[] abbysCrash(int id){
+    public static String[] abbysCrash(){
         String[] resultado = new String[3];
         resultado[0] = "Volta para a primeira casa"; // efeito
         resultado[1] = "Crash";// titulo
@@ -43,15 +43,22 @@ public class Ecreve {
         // ferramenta =
         return resultado;
     }
-    public String[] abbys(int id){
+    public static String[] abbysCodigoDuplicado(){
         String[] resultado = new String[3];
-        resultado[0] = ""; // efeito
+        resultado[0] = "Volta as casas que andou com o lançamento"; // efeito
+        resultado[1] = "Codigo duplicado";// titulo
+        resultado[2] = ""; // descrição
+        // ferramenta = inheritance
+        return resultado;
+    }
+    public static String[] abbysEfeitosSecundarios(){
+        String[] resultado = new String[3];
+        resultado[0] = "Jogador volta 2 turnos"; // efeito
         resultado[1] = "";// titulo
         resultado[2] = ""; // descrição
         // ferramenta =
         return resultado;
     }
-
 
 
 }

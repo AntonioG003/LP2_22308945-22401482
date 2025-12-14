@@ -16,6 +16,7 @@ public class Player {
     int posicao;
     boolean estado;
     Tools[] ferramentas;
+    int[] casas = new int[2];
 
     public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
         this.id = id;
@@ -24,6 +25,7 @@ public class Player {
         this.cor = cor;
         this.posicao = posicao;
         this.estado = estado;
+        //this.casas = new int[2];
     }
 
     public String[] getInfoArrayApi() {
@@ -116,5 +118,9 @@ public class Player {
     }
     public static boolean procuraFerramenta(int id, Player oi){
         return true;
+    }
+    public void casasAndadas(int andou){
+        casas[1] = casas[0];
+        casas[0] = andou;
     }
 }

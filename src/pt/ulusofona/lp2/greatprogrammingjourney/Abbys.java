@@ -31,30 +31,32 @@ public class Abbys  {
         }
         return null;
     }
-    public static void reageAbbys(String[] Abbys, Player[] jogadores, Tabuleiro tabuleiro){
-        switch (Abbys[1]){
-            case "0":
+    public static String[] escreveAbbys(int abby){
+        String[] resultado = new String[3];
+        switch (abby){
+            case 0: resultado = Escreve.abbysErroDeSintaxe();
                 break;
-            case "1":
+            case 1: resultado = Escreve.abbysErroDeLogica();
                 break;
-            case "2":
+            case 2: resultado = Escreve.abbysException();
                 break;
-            case "3":
+            case 3: resultado = Escreve.abbysFileNotFoundException();
                 break;
-            case "4":
+            case 4: resultado = Escreve.abbysCrash();
                 break;
-            case "5":
+            case 5:
                 break;
-            case "6":
+            case 6:
                 break;
-            case "7":
+            case 7:
                 break;
-            case "8":
+            case 8:
                 break;
-            case "9":
+            case 9:
                 break;
 
         }
+        return resultado;
     }
     public static void erroDeSintaxe(Player[] jogadores, Tabuleiro tabuleiro){
 
