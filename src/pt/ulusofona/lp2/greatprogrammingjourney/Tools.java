@@ -1,78 +1,51 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
-import java.util.ArrayList;
-
 public class Tools {
+
     int id;
     String titulo;
-    String descricao;
-    String efeito;
-    int estado;
     int posicao;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    @Override
-    public String toString() {
-        return titulo;
-    }
-
-    public Tools(int id, String titulo, int estado, int posicao, String efeito) {
+    public Tools(int id, int posicao) {
         this.id = id;
-        this.titulo = titulo;
-        this.estado = estado;
         this.posicao = posicao;
-        this.efeito = efeito;
+        this.titulo = escreveTool(id);
     }
 
-    public static void sortArray(Tools[] lista) {
-        Tools menor;
-        int posiMenor;
-        if (lista != null) {
-            for (int i = 0; i < lista.length; i++) {
-                menor = lista[i];
-                posiMenor = i;
-                for (int j = i; j < lista.length; j++) {
-                    if (menor.titulo.compareToIgnoreCase(lista[j].titulo) > 0) {
-                        menor = lista[j];
-                        posiMenor = j;
-                    }
-                }
-                lista[posiMenor] = lista[i];
-                lista[i] = menor;
+    public boolean anulaAbismo(int abismoId) {
+        return (id == 4 && abismoId == 0) ||
+                (id == 2 && abismoId == 1) ||
+                (id == 3 && (abismoId == 2 || abismoId == 3)) ||
+                (id == 0 && abismoId == 5) ||
+                (id == 5);
+    }
 
+    public static String escreveTool(int id) {
+        switch (id) {
+            case 0: return "Herança";
+            case 1: return "Programação Funcional";
+            case 2: return "Testes Unitários";
+            case 3: return "Tratamento de Excepções";
+            case 4: return "IDE";
+            case 5: return "Ajuda Do Professor";
+        }
+        return "";
+    }
+
+    public static Tools[] guardaTools(String[][] data) {
+        if (data == null) return new Tools[0];
+        int count = 0;
+        for (String[] d : data) if ("1".equals(d[0])) count++;
+        Tools[] res = new Tools[count];
+        int i = 0;
+        for (String[] d : data) {
+            if ("1".equals(d[0])) {
+                res[i++] = new Tools(
+                        Integer.parseInt(d[1]),
+                        Integer.parseInt(d[2])
+                );
             }
         }
-    }
-    public static Tools[] guardaTools(String[][]abbysAndTools){
-        Tools[] resultado = new Tools[7];
-        int j =0;
-        for (int i = 0; i< abbysAndTools.length; i++){
-            if (Integer.parseInt(abbysAndTools[i][0]) == 1){
-             //   resultado[j] = new Tools()
-            }
-        }
-        return null;
-    }
-    public static String[] escreveTool(int tool){
-        switch (tool) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-
-        }
-        return new String[3];
+        return res;
     }
 }

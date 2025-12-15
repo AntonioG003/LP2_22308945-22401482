@@ -5,128 +5,75 @@ import java.util.Collections;
 
 public class Player {
 
-    public enum Cores {
-        PURPLE, GREEN, BROWN, BLUE
-    }
+    public enum Cores { PURPLE, GREEN, BROWN, BLUE }
 
     int id;
     String nome;
-    ArrayList<String> linguagem;
+    ArrayList<String> linguagens;
     Cores cor;
-    int posicao;
-    boolean estado;
-    Tools[] ferramentas;
-    int[] casas = {0,0};
+    int posicao = 1;
+    boolean emJogo = true;
+    ArrayList<Tools> ferramentas = new ArrayList<>();
 
-    public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
+    public Player(int id, String nome, ArrayList<String> linguagens, Cores cor) {
         this.id = id;
         this.nome = nome;
-        this.linguagem = linguagem;
+        this.linguagens = linguagens;
         this.cor = cor;
-        this.posicao = posicao;
-        this.estado = estado;
-        //this.casas = new int[2];
     }
 
-    public String[] getInfoArrayApi() {
-        Collections.sort(linguagem);
-        String linguagensStr = String.join("; ", linguagem);
-        String corFormatada = cor.name().substring(0, 1).toUpperCase() + cor.name().substring(1).toLowerCase();
-        return new String[]{
-                String.valueOf(id),
-                nome,
-                linguagensStr,
-                corFormatada,
-                String.valueOf(posicao)
-        };
+    public static boolean recebePlayer(String[][] info) {
+        return info != null && info.length >= 2;
     }
 
-    public static String programmerInfoAsStr(Player jogador) {
-        String linguagensStr = String.join("; ", jogador.linguagem);
-        String estadoStr = jogador.estado ? "Em Jogo" : "Derrotado";
-        if (jogador.ferramentas==null){
-            return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | No tools | "+
-                    linguagensStr + " | " + estadoStr;
+    public static Player[] guardaPlayer(String[][] info) {
+        Player[] res = new Player[info.length];
+        for (int i = 0; i < info.length; i++) {
+            int id = Integer.parseInt(info[i][0]);
+            String nome = info[i][1];
+            String[] langs = info[i][2].split(";");
+            ArrayList<String> l = new ArrayList<>();
+            for (String s : langs) l.add(s.trim());
+            Cores cor = Cores.valueOf(info[i][3].toUpperCase());
+            res[i] = new Player(id, nome, l, cor);
         }
-        Tools.sortArray(jogador.ferramentas);
-        String ferramentasStr = String.join("; ", jogador.ferramentas.toString());
-        return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | " +
-                ferramentasStr +"|"+ linguagensStr + " | " + estadoStr;
+        return res;
     }
 
-    public static boolean recebePlayer(String[][] playerInfo) {
-        if (playerInfo == null){
-            return false;
-        }
-        if (playerInfo.length < 2 || playerInfo.length > 4){
-            return false;
-        }
-        return true;
-    }
-    public static Player[] guardaPlayer (String[][] playerInfo){
-        Player [] jogadores;
-        jogadores = new Player[playerInfo.length];
-        for (int i = 0; i < playerInfo.length; i++) {
-            int id = Integer.parseInt(playerInfo[i][0]);
-            String nome = playerInfo[i][1];
-            String[] linguagensStr = playerInfo[i][2].split(";");
-            ArrayList<String> linguagens = new ArrayList<>();
-            for (String lang : linguagensStr) {
-                linguagens.add(lang.trim());
-            }
-            Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].trim().toUpperCase());
-            jogadores[i] = new Player(id, nome, linguagens, cor, 1, true);
-        }
-        return jogadores;
-    }
-
-    public static int ricochete(int novaPosicao, int tamanhoTabuleiro) {
-        if (novaPosicao > tamanhoTabuleiro) {
-            int sobra = novaPosicao - tamanhoTabuleiro;
-            return tamanhoTabuleiro - sobra;
-        }
-        if (novaPosicao < 1) {
-            return 1;
-        }
-        return novaPosicao;
-    }
-    public static boolean verificaTool(String[][] abbysAndTools, int worldsize){
-        int posicao,posicao1,posicao2;
-        for (String[] abbysAndTool : abbysAndTools) {
-            posicao = posicao1 = posicao2 = -1;
-            for (int j = 0; j < 3; j++) {
-                if (!abbysAndTool[j].matches("\\d+")) {
-                    return false;
-                }
-            }
-            posicao = Integer.parseInt(abbysAndTool[0]);
-            posicao1 = Integer.parseInt(abbysAndTool[1]);
-            posicao2 = Integer.parseInt(abbysAndTool[2]);
-            if (posicao != 1 || posicao1 < 0 || posicao1 > 5 || posicao2 > worldsize || posicao2 < 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-    public String imprimePlayerFerramentas(){
-        StringBuilder resultado = new StringBuilder(nome);
-        for (int i = 0; i< ferramentas.length; i++){
-            //resultado.append(";").append(ferramentas[].getTitulo(i));
-        }
-
-        return resultado.toString();
-    }
-    public boolean procuraFerramenta(int id){
-        for (Tools t: ferramentas){
-            if (t.id == id){
-
+    public boolean temFerramentaPara(int abismoId) {
+        for (Tools t : ferramentas) {
+            if (t.anulaAbismo(abismoId)) {
                 return true;
             }
         }
         return false;
     }
-    public void casasAndadas(int andou){
-        casas[1] = casas[0];
-        casas[0] = andou;
+
+    public String ferramentasAsString() {
+        if (ferramentas.isEmpty()) return "No tools";
+        ArrayList<String> nomes = new ArrayList<>();
+        for (Tools t : ferramentas) nomes.add(t.titulo);
+        return String.join("; ", nomes);
+    }
+
+    public String infoAsString() {
+        Collections.sort(linguagens);
+        return id + " | " + nome + " | " + posicao + " | " +
+                ferramentasAsString() + " | " +
+                String.join("; ", linguagens) + " | " +
+                (emJogo ? "Em Jogo" : "Derrotado");
+    }
+
+    public String[] getInfoArrayApi() {
+        Collections.sort(linguagens);
+        return new String[]{
+                String.valueOf(id),
+                nome,
+                String.join("; ", linguagens),
+                cor.name(),
+                String.valueOf(posicao),
+                ferramentasAsString(),
+                emJogo ? "Em Jogo" : "Derrotado"
+        };
     }
 }

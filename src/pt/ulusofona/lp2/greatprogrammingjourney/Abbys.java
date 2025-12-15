@@ -1,67 +1,47 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
-public class Abbys  {
+public class Abbys {
+
     int id;
     String titulo;
-    String efeito;
-    String descricao;
-    boolean estado;
     int posicao;
 
-    public Abbys(int id, String titulo, String efeito, String descricao, int posicao) {
+    public Abbys(int id, int posicao) {
         this.id = id;
-        this.titulo = titulo;
-        this.efeito = efeito;
-        this.descricao = descricao;
-        this.estado = true;
         this.posicao = posicao;
+        this.titulo = escreveAbbys(id);
     }
 
-    public static Abbys[] guardaAbbys(String[][]abbysAndTools, int worldsize){
-        Abbys[] resultado = new Abbys[worldsize];
-        int j =0;
-        int id;
-        int posicao;
-        for (int i = 0; i< abbysAndTools.length; i++){
-            if (Integer.parseInt(abbysAndTools[i][0]) == 0){
-                id = Integer.parseInt(abbysAndTools[i][1]);
-                posicao = Integer.parseInt(abbysAndTools[i][2]);
-                   resultado[j] = new Abbys(id,"por implementar", "por implementar", "...",posicao );
+    public static String escreveAbbys(int id) {
+        switch (id) {
+            case 0: return "Erro de sintaxe";
+            case 1: return "Erro de lógica";
+            case 2: return "Exception";
+            case 3: return "FileNotFoundException";
+            case 4: return "Crash";
+            case 5: return "Código Duplicado";
+            case 6: return "Efeitos Secundários";
+            case 7: return "Blue Screen of Death";
+            case 8: return "Ciclo Infinito";
+            case 9: return "Segmentation Fault";
+        }
+        return "";
+    }
+
+    public static Abbys[] guardaAbbys(String[][] data) {
+        if (data == null) return new Abbys[0];
+        int count = 0;
+        for (String[] d : data) if ("0".equals(d[0])) count++;
+        Abbys[] res = new Abbys[count];
+        int i = 0;
+        for (String[] d : data) {
+            if ("0".equals(d[0])) {
+                res[i++] = new Abbys(
+                        Integer.parseInt(d[1]),
+                        Integer.parseInt(d[2])
+                );
             }
         }
-        return null;
-    }
-    public static String[] escreveAbbys(int abby){
-        String[] resultado = new String[3];
-        switch (abby){
-            case 0: resultado = Escreve.abbysErroDeSintaxe();
-                break;
-            case 1: resultado = Escreve.abbysErroDeLogica();
-                break;
-            case 2: resultado = Escreve.abbysException();
-                break;
-            case 3: resultado = Escreve.abbysFileNotFoundException();
-                break;
-            case 4: resultado = Escreve.abbysCrash();
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
-
-        }
-        return resultado;
-    }
-    public static void erroDeSintaxe(Player jogador, Tabuleiro tabuleiro){
-        if (jogador.procuraFerramenta(4)){
-            return;
-        }
-        jogador.posicao-=1;
+        return res;
     }
 }

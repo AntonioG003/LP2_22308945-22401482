@@ -1,200 +1,155 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-
-
-
 
 public class GameManager {
 
     Tabuleiro tabuleiro;
-    final int jogadoresMinimos = 2;
-    final int jogadoresMaximos = 4;
-    int jogadorAtual = 0;
-    int turno= 1;
     Player[] jogadores;
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-        if (!Player.recebePlayer(playerInfo)) {
-            return false;
-        }
-        if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) {
-            return false;
-        }
-        this.tabuleiro = new Tabuleiro(worldSize);
+    int atual = 0;
+    int turnos = 0;
 
-        jogadores=Player.guardaPlayer(playerInfo);
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
+        if (!Player.recebePlayer(playerInfo)) return false;
+        if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) return false;
+        tabuleiro = new Tabuleiro(worldSize);
+        jogadores = Player.guardaPlayer(playerInfo);
+        return true;
+    }
+
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] data) {
+        if (!createInitialBoard(playerInfo, worldSize)) return false;
+        tabuleiro.abbys = Abbys.guardaAbbys(data);
+        tabuleiro.tools = Tools.guardaTools(data);
         return true;
     }
 
     public String getImagePng(int nrSquare) {
-        if (tabuleiro == null || nrSquare < 1 || nrSquare > this.tabuleiro.tamanho) {
-            return null;
-        }
-        if (nrSquare == this.tabuleiro.tamanho) {
-            return "glory.png";
-        }
-        switch (nrSquare) {
-            case 1: return "dice_1.png";
-            case 2: return "dice_2.png";
-            case 3: return "dice_3.png";
-            case 4: return "dice_4.png";
-            case 5: return "dice_5.png";
-            case 6: return "dice_6.png";
-            default: return null;
-        }
+        if (tabuleiro == null || nrSquare < 1 || nrSquare > tabuleiro.tamanho) return null;
+        if (nrSquare == tabuleiro.tamanho) return "glory.png";
+        return "dice_" + nrSquare + ".png";
     }
 
     public String[] getProgrammerInfo(int id) {
-        if (jogadores == null) {
-            return null;
-        }
-        for (Player p : jogadores) {
-            if (p != null && p.id == id) {
-                return p.getInfoArrayApi();
-            }
-        }
+        for (Player p : jogadores) if (p.id == id) return p.getInfoArrayApi();
         return null;
     }
 
     public String getProgrammerInfoAsStr(int id) {
-        String[] info = getProgrammerInfo(id);
-        if (info == null) {
-            return null;
-        }
+        for (Player p : jogadores) if (p.id == id) return p.infoAsString();
+        return null;
+    }
+
+    public String getProgrammersInfo() {
+        StringBuilder sb = new StringBuilder();
         for (Player p : jogadores) {
-            if (p != null && p.id == id) {
-                return Player.programmerInfoAsStr(p);
+            sb.append(p.infoAsString()).append("\n");
+        }
+        return sb.toString().trim();
+    }
+
+    public String[] getSlotInfo(int position) {
+        String players = "";
+        String abby = "";
+        String tool = "";
+
+        for (Player p : jogadores) {
+            if (p.posicao == position) {
+                players += p.id + ",";
+            }
+        }
+        if (players.endsWith(",")) {
+            players = players.substring(0, players.length() - 1);
+        }
+
+        for (Abbys a : tabuleiro.abbys) {
+            if (a.posicao == position) {
+                abby = "A:" + a.id;
+            }
+        }
+
+        for (Tools t : tabuleiro.tools) {
+            if (t.posicao == position) {
+                tool = "T:" + t.id;
+            }
+        }
+
+        return new String[]{players, abby, tool};
+    }
+
+    public int getCurrentPlayerID() {
+        return jogadores[atual].id;
+    }
+
+    public boolean moveCurrentPlayer(int nrSpaces) {
+        Player p = jogadores[atual];
+        p.posicao += nrSpaces;
+        if (p.posicao > tabuleiro.tamanho) {
+            p.posicao = tabuleiro.tamanho;
+        }
+        turnos++;
+        atual = (atual + 1) % jogadores.length;
+        return true;
+    }
+
+    public String reactToAbyssOrTool() {
+        Player p = jogadores[(atual - 1 + jogadores.length) % jogadores.length];
+
+        for (Tools t : tabuleiro.tools) {
+            if (t.posicao == p.posicao) {
+                p.ferramentas.add(t);
+                return "Recolheu ferramenta: " + t.titulo;
+            }
+        }
+
+        for (Abbys a : tabuleiro.abbys) {
+            if (a.posicao == p.posicao) {
+                if (p.temFerramentaPara(a.id)) {
+                    return a.titulo + " anulado por ferramenta";
+                }
+                p.posicao = Math.max(1, p.posicao - 1);
+                return "Caiu em " + a.titulo;
             }
         }
         return null;
     }
 
-    public String[] getSlotInfo(int position) {
-        if (tabuleiro == null || position < 1 || position > tabuleiro.tamanho) {
-            return null;
-        }
-        ArrayList<String> jogadoresPosition = new ArrayList<String>();
-        String []resultado = new String[1];
-        for (Player p : jogadores) {
-            if (p.posicao == position){
-            jogadoresPosition.add(""+p.id);
-            }
-        }
-        resultado[0] = String.join(",", jogadoresPosition);
-
-        return resultado;
-    }
-
-    public int getCurrentPlayerID() {
-        if (jogadores == null || jogadores.length == 0) {
-            return -1;
-        }
-        if (jogadorAtual < 0 || jogadorAtual >= jogadores.length) {
-            jogadorAtual = 0;
-        }
-        return jogadores[jogadorAtual].id;
-    }
-
-    public boolean moveCurrentPlayer(int nrSpaces) {
-        jogadores[jogadorAtual].casasAndadas(nrSpaces);
-        jogadores[jogadorAtual].posicao =
-                Player.ricochete(jogadores[jogadorAtual].posicao + nrSpaces, tabuleiro.tamanho);
-        jogadorAtual = (jogadorAtual + 1) % jogadores.length;
-        turno++;
-        return true;
-    }
-
     public boolean gameIsOver() {
-        if (jogadores == null || tabuleiro == null) {
-            return false;
-        }
         for (Player p : jogadores) {
-            if (p.posicao == tabuleiro.tamanho) {
-                return true;
-            }
+            if (p.posicao == tabuleiro.tamanho) return true;
         }
         return false;
     }
 
     public ArrayList<String> getGameResults() {
-        ArrayList<String> restantes = new ArrayList<String>();
-        ArrayList<String> results = new ArrayList<>();
-        results.add("THE GREAT PROGRAMMING JOURNEY");
-        results.add("");
-        results.add("NR. DE TURNOS");
-        results.add(""+turno);
-        results.add("");
-        results.add("VENCEDOR");
-        if (jogadores != null) {
+        ArrayList<String> res = new ArrayList<>();
         for (Player p : jogadores) {
-            if (p.posicao== tabuleiro.tamanho){
-                results.add(p.nome);
-            }
-            else{
-                restantes.add(p.nome + " " + p.posicao);
+            if (p.posicao == tabuleiro.tamanho) {
+                res.add("Vencedor: " + p.nome);
             }
         }
-        }else{
-        results.add("Nenhum");
+        res.add("Número de Turnos: " + turnos);
+        return res;
+    }
+
+    public void loadGame(File file) throws InvalidFileException, FileNotFoundException {
+        if (!file.exists()) throw new FileNotFoundException();
+    }
+
+    public boolean saveGame(File file) {
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write("save");
+            fw.close();
+            return true;
+        } catch (IOException e) {
+            return false;
         }
-        results.add("");
-        results.add("RESTANTES");
-        results.addAll(restantes);
-        return results;
     }
 
     public JPanel getAuthorsPanel() {
-        return null;
-    }
-    public HashMap<String, String> customizeBoard() {
-        return new HashMap<>();
-    }
-
-
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abbysesAndTools){
-        if (!Player.recebePlayer(playerInfo)) {
-            return false;
-        }
-        if (!Tabuleiro.tamanhoTabuleiro(playerInfo, worldSize)) {
-            return false;
-        }
-        if(!Tabuleiro.verificaAbbys(abbysesAndTools, worldSize)|| !Player.verificaTool(abbysesAndTools, worldSize)){
-            return false;
-        }
-        this.tabuleiro = new Tabuleiro(worldSize);
-
-        jogadores=Player.guardaPlayer(playerInfo);
-        return true;
-    }
-    public String getProgrammersInfo(){
-        String resultado = "";
-        for (Player p : jogadores) {
-                resultado += Player.programmerInfoAsStr(p);
-        }
-        return null;
-    }
-    public String reactToAbyssOrTool(){
-            for(Abbys a: tabuleiro.abbys){
-                if(jogadores[jogadorAtual-1].posicao == a.posicao){
-                    //jogadores[jofadorAtual-1].sofre(a.id);
-                }
-            }
-
-        return "olá";
-    }
-
-    public void loadGame(File file) throws InvalidFileException, FileNotFoundException{
-
-    }
-    public boolean saveGame(File file){
-
-        return true;
+        return new JPanel();
     }
 }
