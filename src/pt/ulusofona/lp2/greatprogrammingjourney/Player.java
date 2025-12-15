@@ -13,7 +13,7 @@ public class Player {
     boolean ativo = true;
     boolean preso = false;
     int turnosPerdidos = 0;
-    ArrayList<Tools> tools = new ArrayList<>();
+    ArrayList<Tools> ferramentas = new ArrayList<>();
     int ultimoDado = 0;
 
     public Player(int id, String nome, ArrayList<String> linguagens, String cor) {
@@ -24,7 +24,13 @@ public class Player {
     }
 
     public static boolean valida(String[][] info) {
-        return info != null && info.length >= 2 && info.length <= 4;
+        if (info == null) {
+            return false;
+        }
+        if (info.length < 2 || info.length > 4) {
+            return false;
+        }
+        return true;
     }
 
     public static Player[] cria(String[][] info) {
@@ -45,14 +51,30 @@ public class Player {
     }
 
     public boolean podeMover(int casas) {
-        if (!ativo || preso || turnosPerdidos > 0) return false;
-        if (linguagens.contains("Assembly") && casas > 2) return false;
+        if (!ativo) {
+            return false;
+        }
+        if (preso) {
+            return false;
+        }
+        if (turnosPerdidos > 0) {
+            return false;
+        }
+
+        String primeira = linguagens.get(0);
+        if (primeira.equals("Assembly") && casas > 2) {
+            return false;
+        }
+        if (primeira.equals("C") && casas > 3) {
+            return false;
+        }
+
         ultimoDado = casas;
         return true;
     }
 
-    public boolean temToolPara(int abismo) {
-        for (Tools t : tools) {
+    public boolean temFerramentaPara(int abismo) {
+        for (Tools t : ferramentas) {
             if (!t.usada && t.anula(abismo)) {
                 t.usada = true;
                 return true;
@@ -61,38 +83,13 @@ public class Player {
         return false;
     }
 
-    public String ferramentas() {
-        if (tools.isEmpty()) return "No tools";
-        ArrayList<String> n = new ArrayList<>();
-        for (Tools t : tools) {
-            n.add(t.titulo);
-        }
-        return String.join("; ", n);
-    }
-
-    public String infoStr() {
+    public String linguagensOrdenadas() {
         Collections.sort(linguagens);
-        String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
-        return id + " | " + nome + " | " + posicao + " | " + ferramentas() + " | " +
-                String.join("; ", linguagens) + " | " + estado;
-    }
-
-    public String[] infoArray() {
-        Collections.sort(linguagens);
-        String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
-        return new String[]{
-                String.valueOf(id),
-                nome,
-                String.join("; ", linguagens),
-                cor,
-                String.valueOf(posicao),
-                ferramentas(),
-                estado
-        };
+        return String.join("; ", linguagens);
     }
 
     private static String formatCor(String c) {
-        c = c.toLowerCase();
-        return c.substring(0,1).toUpperCase() + c.substring(1);
+        String s = c.toLowerCase();
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 }

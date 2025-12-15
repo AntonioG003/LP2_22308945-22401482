@@ -3,14 +3,33 @@ package pt.ulusofona.lp2.greatprogrammingjourney;
 public class Tools {
 
     int id;
-    String titulo;
+    String nome;
     int posicao;
     boolean usada = false;
 
     public Tools(int id, int posicao) {
         this.id = id;
         this.posicao = posicao;
-        this.titulo = escreve(id);
+        this.nome = escreve(id);
+    }
+
+    public boolean anula(int abismo) {
+        if (id == 5) {
+            return true;
+        }
+        if (id == 4 && abismo == 0) {
+            return true;
+        }
+        if (id == 2 && abismo == 1) {
+            return true;
+        }
+        if (id == 3 && (abismo == 2 || abismo == 3)) {
+            return true;
+        }
+        if (id == 0 && abismo == 5) {
+            return true;
+        }
+        return false;
     }
 
     public static String escreve(int id) {
@@ -23,15 +42,6 @@ public class Tools {
             case 5: return "Ajuda Do Professor";
             default: return "";
         }
-    }
-
-    public boolean anula(int abismo) {
-        if (id == 5) return true;
-        if (id == 4 && abismo == 0) return true;
-        if (id == 2 && abismo == 1) return true;
-        if (id == 3 && (abismo == 2 || abismo == 3)) return true;
-        if (id == 0 && abismo == 5) return true;
-        return false;
     }
 
     public static Tools[] guarda(String[][] data) {
@@ -48,7 +58,10 @@ public class Tools {
         int i = 0;
         for (String[] d : data) {
             if (d[0].equals("1")) {
-                r[i++] = new Tools(Integer.parseInt(d[1]), Integer.parseInt(d[2]));
+                r[i++] = new Tools(
+                        Integer.parseInt(d[1]),
+                        Integer.parseInt(d[2])
+                );
             }
         }
         return r;
