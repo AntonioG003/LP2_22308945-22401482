@@ -241,6 +241,58 @@ public class GameManager {
         return r;
         //
     }
+    public String[] getProgrammerInfo(int id) {
+        if (jogadores == null) {
+            return null;
+        }
+
+        for (Player p : jogadores) {
+            if (p.id == id) {
+                return p.getInfoArrayApi();
+            }
+        }
+
+        return null;
+    }
+
+    public String getProgrammerInfoAsStr(int id) {
+        if (jogadores == null) {
+            return null;
+        }
+
+        for (Player p : jogadores) {
+            if (p.id == id) {
+                return Player.programmerInfoAsStr(p);
+            }
+        }
+
+        return null;
+    }
+
+    public String getProgrammersInfo() {
+        if (jogadores == null) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < jogadores.length; i++) {
+            sb.append(Player.programmerInfoAsStr(jogadores[i]));
+            if (i < jogadores.length - 1) {
+                sb.append("\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public boolean saveGame(java.io.File file) {
+        return false;
+    }
+
+    public void loadGame(java.io.File file)
+            throws InvalidFileException, java.io.FileNotFoundException {
+    }
 
     public JPanel getAuthorsPanel() {
         return new JPanel();
