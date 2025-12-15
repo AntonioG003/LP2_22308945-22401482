@@ -17,15 +17,25 @@ public class Tabuleiro {
     }
 
     public static boolean validaAT(String[][] data, int size) {
-        if (data == null) return true;
+        if (data == null) {
+            return true;
+        }
         for (String[] d : data) {
-            if (d.length != 3) return false;
+            if (d.length != 3){
+                return false;
+            }
             int tipo = Integer.parseInt(d[0]);
             int id = Integer.parseInt(d[1]);
             int pos = Integer.parseInt(d[2]);
-            if (tipo == 0 && (id < 0 || id > 9)) return false;
-            if (tipo == 1 && (id < 0 || id > 5)) return false;
-            if (pos < 1 || pos > size) return false;
+            if (tipo == 0 && (id < 0 || id > 9)){
+                return false;
+            }
+            if (tipo == 1 && (id < 0 || id > 5)) {
+                return false;
+            }
+            if (pos < 1 || pos > size) {
+                return false;
+            }
         }
         return true;
     }

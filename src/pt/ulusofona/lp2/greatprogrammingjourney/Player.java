@@ -45,8 +45,12 @@ public class Player {
     }
 
     public boolean podeMover(int casas) {
-        if (!ativo || preso || turnosPerdidos > 0) return false;
-        if (linguagens.contains("Assembly") && casas > 2) return false;
+        if (!ativo || preso || turnosPerdidos > 0) {
+            return false;
+        }
+        if (linguagens.contains("Assembly") && casas > 2) {
+            return false;
+        }
         ultimoDado = casas;
         return true;
     }
@@ -62,7 +66,9 @@ public class Player {
     }
 
     public String ferramentas() {
-        if (tools.isEmpty()) return "No tools";
+        if (tools.isEmpty()){
+            return "No tools";
+        }
         ArrayList<String> n = new ArrayList<>();
         for (Tools t : tools) {
             n.add(t.titulo);
