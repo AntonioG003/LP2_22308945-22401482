@@ -5,22 +5,15 @@ public class Tools {
     int id;
     String titulo;
     int posicao;
+    boolean usada = false;
 
     public Tools(int id, int posicao) {
         this.id = id;
         this.posicao = posicao;
-        this.titulo = escreveTool(id);
+        this.titulo = escreve(id);
     }
 
-    public boolean anulaAbismo(int abismoId) {
-        return (id == 4 && abismoId == 0) ||
-                (id == 2 && abismoId == 1) ||
-                (id == 3 && (abismoId == 2 || abismoId == 3)) ||
-                (id == 0 && abismoId == 5) ||
-                (id == 5);
-    }
-
-    public static String escreveTool(int id) {
+    public static String escreve(int id) {
         switch (id) {
             case 0: return "Herança";
             case 1: return "Programação Funcional";
@@ -28,24 +21,36 @@ public class Tools {
             case 3: return "Tratamento de Excepções";
             case 4: return "IDE";
             case 5: return "Ajuda Do Professor";
+            default: return "";
         }
-        return "";
     }
 
-    public static Tools[] guardaTools(String[][] data) {
-        if (data == null) return new Tools[0];
-        int count = 0;
-        for (String[] d : data) if ("1".equals(d[0])) count++;
-        Tools[] res = new Tools[count];
-        int i = 0;
+    public boolean anula(int abismo) {
+        if (id == 5) return true;
+        if (id == 4 && abismo == 0) return true;
+        if (id == 2 && abismo == 1) return true;
+        if (id == 3 && (abismo == 2 || abismo == 3)) return true;
+        if (id == 0 && abismo == 5) return true;
+        return false;
+    }
+
+    public static Tools[] guarda(String[][] data) {
+        if (data == null) {
+            return new Tools[0];
+        }
+        int c = 0;
         for (String[] d : data) {
-            if ("1".equals(d[0])) {
-                res[i++] = new Tools(
-                        Integer.parseInt(d[1]),
-                        Integer.parseInt(d[2])
-                );
+            if (d[0].equals("1")) {
+                c++;
             }
         }
-        return res;
+        Tools[] r = new Tools[c];
+        int i = 0;
+        for (String[] d : data) {
+            if (d[0].equals("1")) {
+                r[i++] = new Tools(Integer.parseInt(d[1]), Integer.parseInt(d[2]));
+            }
+        }
+        return r;
     }
 }

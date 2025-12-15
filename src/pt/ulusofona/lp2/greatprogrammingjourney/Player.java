@@ -5,75 +5,94 @@ import java.util.Collections;
 
 public class Player {
 
-    public enum Cores { PURPLE, GREEN, BROWN, BLUE }
-
     int id;
     String nome;
     ArrayList<String> linguagens;
-    Cores cor;
+    String cor;
     int posicao = 1;
-    boolean emJogo = true;
-    ArrayList<Tools> ferramentas = new ArrayList<>();
+    boolean ativo = true;
+    boolean preso = false;
+    int turnosPerdidos = 0;
+    ArrayList<Tools> tools = new ArrayList<>();
+    int ultimoDado = 0;
 
-    public Player(int id, String nome, ArrayList<String> linguagens, Cores cor) {
+    public Player(int id, String nome, ArrayList<String> linguagens, String cor) {
         this.id = id;
         this.nome = nome;
         this.linguagens = linguagens;
-        this.cor = cor;
+        this.cor = formatCor(cor);
     }
 
-    public static boolean recebePlayer(String[][] info) {
-        return info != null && info.length >= 2;
+    public static boolean valida(String[][] info) {
+        return info != null && info.length >= 2 && info.length <= 4;
     }
 
-    public static Player[] guardaPlayer(String[][] info) {
-        Player[] res = new Player[info.length];
+    public static Player[] cria(String[][] info) {
+        Player[] r = new Player[info.length];
         for (int i = 0; i < info.length; i++) {
-            int id = Integer.parseInt(info[i][0]);
-            String nome = info[i][1];
-            String[] langs = info[i][2].split(";");
             ArrayList<String> l = new ArrayList<>();
-            for (String s : langs) l.add(s.trim());
-            Cores cor = Cores.valueOf(info[i][3].toUpperCase());
-            res[i] = new Player(id, nome, l, cor);
+            for (String s : info[i][2].split(";")) {
+                l.add(s.trim());
+            }
+            r[i] = new Player(
+                    Integer.parseInt(info[i][0]),
+                    info[i][1],
+                    l,
+                    info[i][3]
+            );
         }
-        return res;
+        return r;
     }
 
-    public boolean temFerramentaPara(int abismoId) {
-        for (Tools t : ferramentas) {
-            if (t.anulaAbismo(abismoId)) {
+    public boolean podeMover(int casas) {
+        if (!ativo || preso || turnosPerdidos > 0) return false;
+        if (linguagens.contains("Assembly") && casas > 2) return false;
+        ultimoDado = casas;
+        return true;
+    }
+
+    public boolean temToolPara(int abismo) {
+        for (Tools t : tools) {
+            if (!t.usada && t.anula(abismo)) {
+                t.usada = true;
                 return true;
             }
         }
         return false;
     }
 
-    public String ferramentasAsString() {
-        if (ferramentas.isEmpty()) return "No tools";
-        ArrayList<String> nomes = new ArrayList<>();
-        for (Tools t : ferramentas) nomes.add(t.titulo);
-        return String.join("; ", nomes);
+    public String ferramentas() {
+        if (tools.isEmpty()) return "No tools";
+        ArrayList<String> n = new ArrayList<>();
+        for (Tools t : tools) {
+            n.add(t.titulo);
+        }
+        return String.join("; ", n);
     }
 
-    public String infoAsString() {
+    public String infoStr() {
         Collections.sort(linguagens);
-        return id + " | " + nome + " | " + posicao + " | " +
-                ferramentasAsString() + " | " +
-                String.join("; ", linguagens) + " | " +
-                (emJogo ? "Em Jogo" : "Derrotado");
+        String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
+        return id + " | " + nome + " | " + posicao + " | " + ferramentas() + " | " +
+                String.join("; ", linguagens) + " | " + estado;
     }
 
-    public String[] getInfoArrayApi() {
+    public String[] infoArray() {
         Collections.sort(linguagens);
+        String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
         return new String[]{
                 String.valueOf(id),
                 nome,
                 String.join("; ", linguagens),
-                cor.name(),
+                cor,
                 String.valueOf(posicao),
-                ferramentasAsString(),
-                emJogo ? "Em Jogo" : "Derrotado"
+                ferramentas(),
+                estado
         };
+    }
+
+    private static String formatCor(String c) {
+        c = c.toLowerCase();
+        return c.substring(0,1).toUpperCase() + c.substring(1);
     }
 }

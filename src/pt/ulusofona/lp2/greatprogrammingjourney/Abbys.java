@@ -9,10 +9,10 @@ public class Abbys {
     public Abbys(int id, int posicao) {
         this.id = id;
         this.posicao = posicao;
-        this.titulo = escreveAbbys(id);
+        this.titulo = escreve(id);
     }
 
-    public static String escreveAbbys(int id) {
+    public static String escreve(int id) {
         switch (id) {
             case 0: return "Erro de sintaxe";
             case 1: return "Erro de lógica";
@@ -24,24 +24,27 @@ public class Abbys {
             case 7: return "Blue Screen of Death";
             case 8: return "Ciclo Infinito";
             case 9: return "Segmentation Fault";
+            default: return "";
         }
-        return "";
     }
 
-    public static Abbys[] guardaAbbys(String[][] data) {
-        if (data == null) return new Abbys[0];
-        int count = 0;
-        for (String[] d : data) if ("0".equals(d[0])) count++;
-        Abbys[] res = new Abbys[count];
-        int i = 0;
+    public static Abbys[] guarda(String[][] data) {
+        if (data == null) {
+            return new Abbys[0];
+        }
+        int c = 0;
         for (String[] d : data) {
-            if ("0".equals(d[0])) {
-                res[i++] = new Abbys(
-                        Integer.parseInt(d[1]),
-                        Integer.parseInt(d[2])
-                );
+            if (d[0].equals("0")) {
+                c++;
             }
         }
-        return res;
+        Abbys[] r = new Abbys[c];
+        int i = 0;
+        for (String[] d : data) {
+            if (d[0].equals("0")) {
+                r[i++] = new Abbys(Integer.parseInt(d[1]), Integer.parseInt(d[2]));
+            }
+        }
+        return r;
     }
 }
