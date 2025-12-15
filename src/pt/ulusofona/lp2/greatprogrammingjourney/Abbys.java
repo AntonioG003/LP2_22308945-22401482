@@ -3,19 +3,19 @@ package pt.ulusofona.lp2.greatprogrammingjourney;
 public class Abbys {
 
     int id;
-    String nome;
+    String titulo;
     int posicao;
 
     public Abbys(int id, int posicao) {
         this.id = id;
         this.posicao = posicao;
-        this.nome = escreve(id);
+        this.titulo = escreve(id);
     }
 
     public static String escreve(int id) {
         switch (id) {
-            case 0: return "Erro de Sintaxe";
-            case 1: return "Erro de Lógica";
+            case 0: return "Erro de sintaxe";
+            case 1: return "Erro de lógica";
             case 2: return "Exception";
             case 3: return "FileNotFoundException";
             case 4: return "Crash";
@@ -42,10 +42,7 @@ public class Abbys {
         int i = 0;
         for (String[] d : data) {
             if (d[0].equals("0")) {
-                r[i++] = new Abbys(
-                        Integer.parseInt(d[1]),
-                        Integer.parseInt(d[2])
-                );
+                r[i++] = new Abbys(Integer.parseInt(d[1]), Integer.parseInt(d[2]));
             }
         }
         return r;
