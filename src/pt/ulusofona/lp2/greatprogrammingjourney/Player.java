@@ -9,7 +9,7 @@ public class Player {
     String nome;
     ArrayList<String> linguagens;
     String cor;
-    int posicao = 1;
+    int posicao = 0;
     boolean ativo = true;
     boolean preso = false;
     int turnosPerdidos = 0;
@@ -71,7 +71,7 @@ public class Player {
         }
         ArrayList<String> n = new ArrayList<>();
         for (Tools t : tools) {
-            n.add(t.titulo);
+            n.add(t.nome);
         }
         return String.join("; ", n);
     }

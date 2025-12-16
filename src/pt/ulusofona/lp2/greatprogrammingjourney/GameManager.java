@@ -103,80 +103,79 @@ public class GameManager {
         }
         return jogadores[atual].id;
     }
-
     public boolean moveCurrentPlayer(int casas) {
         Player p = jogadores[atual];
+
         if (!p.podeMover(casas)) {
             return false;
         }
+
         p.posicao += casas;
+
         if (p.posicao > tabuleiro.tamanho) {
-            int e = p.posicao - tabuleiro.tamanho;
-            p.posicao = tabuleiro.tamanho - e;
+            int excesso = p.posicao - tabuleiro.tamanho;
+            p.posicao = tabuleiro.tamanho - excesso;
         }
+
         turnos++;
         atual = (atual + 1) % jogadores.length;
         return true;
     }
+
 
     public String reactToAbyssOrTool() {
         Player p = jogadores[(atual - 1 + jogadores.length) % jogadores.length];
 
         for (Tools t : tabuleiro.tools) {
             if (!t.usada && t.posicao == p.posicao) {
+                t.usada = true;
                 p.tools.add(t);
-                turnos++;
-                return "Recolheu ferramenta: " + t.titulo;
+                return "Recolheu ferramenta: " + t.nome;
             }
         }
 
         for (Abbys a : tabuleiro.abbys) {
             if (a.posicao == p.posicao) {
+
                 if (p.temToolPara(a.id)) {
-                    turnos++;
                     return a.titulo + " anulado por ferramenta";
                 }
-                switch (a.id) {
-                    case 0:
-                        p.posicao--;
-                        break;
-                    case 1:
-                        p.posicao -= p.ultimoDado / 2;
-                        break;
-                    case 2:
-                        turnos++;
-                        return "Exception";
-                    case 3:
-                        p.posicao = 1;
-                        break;
-                    case 4:
-                        p.ativo = false;
-                        break;
-                    case 5:
-                        p.posicao -= p.ultimoDado;
-                        break;
-                    case 6:
-                        p.turnosPerdidos = 2;
-                        break;
-                    case 7:
-                        p.ativo = false;
-                        break;
-                    case 8:
-                        p.preso = true;
-                        break;
-                    case 9:
-                        turnos++;
-                        return "Segmentation Fault";
+
+                if (a.id == 0) {
+                    p.posicao -= 1;
+                } else if (a.id == 1) {
+                    p.posicao -= p.ultimoDado / 2;
+                } else if (a.id == 2) {
+                    p.posicao -= 2;
+                } else if (a.id == 3) {
+                    p.posicao -= 3;
+                } else if (a.id == 4) {
+                    p.posicao = 1;
+                } else if (a.id == 5) {
+                    p.posicao -= p.ultimoDado;
+                } else if (a.id == 6) {
+                    p.turnosPerdidos = 2;
+                } else if (a.id == 7) {
+                    p.ativo = false;
+                } else if (a.id == 8) {
+                    p.preso = true;
+                } else if (a.id == 9) {
+                    p.posicao -= 3;
                 }
+
                 if (p.posicao < 1) {
                     p.posicao = 1;
                 }
-                turnos++;
+
                 return "Caiu em " + a.titulo;
             }
         }
-        return null;
+
+        return "Nada aconteceu";
     }
+
+
+
 
     public boolean gameIsOver() {
         boolean vivo = false;

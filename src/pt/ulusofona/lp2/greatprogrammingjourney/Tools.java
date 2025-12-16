@@ -5,12 +5,12 @@ public class Tools {
     int id;
     int posicao;
     boolean usada = false;
-    String titulo;
+    String nome;
 
     public Tools(int id, int posicao) {
         this.id = id;
         this.posicao = posicao;
-        this.titulo = nome(id);
+        this.nome = nome(id);
     }
 
     public boolean anula(int abismo) {
