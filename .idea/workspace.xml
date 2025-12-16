@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="15/12/2025- boanoite" />
+    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="15/12/2025- boanoite">
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Tools.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,12 +30,12 @@
     &quot;assignee&quot;: &quot;AntonioG003&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AntonioG003/LP2_22308945-22401482.git",
-    "accountId": "c62c83ee-56d1-4f9d-abb1-4cb364482bef"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AntonioG003/LP2_22308945-22401482.git&quot;,
+    &quot;accountId&quot;: &quot;c62c83ee-56d1-4f9d-abb1-4cb364482bef&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
