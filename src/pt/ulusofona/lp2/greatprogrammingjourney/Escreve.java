@@ -61,4 +61,41 @@ public class Escreve {
     }
 
 
+    public static String[] abbysBSOD() {
+        return new String[]{
+                "Jogador morreu",
+                "Blue Screen of Death",
+                ""
+        };
+    }
+
+    public static String[] abbysCicloInfinito(boolean usouTool) {
+        if (usouTool) {
+            return new String[]{
+                    "Ciclo Infinito anulado por Teacher Help",
+                    "Ciclo Infinito",
+                    ""
+            };
+        }
+        return new String[]{
+                "Jogador ficou preso",
+                "Ciclo Infinito",
+                ""
+        };
+    }
+
+    public static String[] abbysSegmentationFault(boolean ativou) {
+        if (!ativou) {
+            return new String[]{
+                    "",
+                    "Segmentation Fault",
+                    ""
+            };
+        }
+        return new String[]{
+                "Todos os jogadores recuam 3 casas",
+                "Segmentation Fault",
+                ""
+        };
+    }
 }

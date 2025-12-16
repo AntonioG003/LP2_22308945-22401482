@@ -1,42 +1,53 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
+import java.lang.String;
 
 public class Tabuleiro {
-
     int tamanho;
     Abbys[] abbys;
-    Tools[] tools;
-
-    public Tabuleiro(int tamanho) {
-        this.tamanho = tamanho;
-        abbys = new Abbys[0];
-        tools = new Tools[0];
-    }
-
-    public static boolean valida(String[][] jogadores, int size) {
-        return size >= jogadores.length * 2;
-    }
-
-    public static boolean validaAT(String[][] data, int size) {
-        if (data == null) {
-            return true;
-        }
-        for (String[] d : data) {
-            if (d.length != 3) {
-                return false;
+    Tools[] ferramentas;
+    public static boolean verificaAbbys(String[][]abbysAndTools, int worldsize){
+        int posicao,posicao1,posicao2;
+        for(int i=0; i< abbysAndTools.length; i++){
+            posicao = posicao1 = posicao2 = -1;
+            for(int j = 0; j< 3; j++){
+                if(!abbysAndTools[i][j].matches("\\d+")){
+                    return false;
+                }
             }
-            int tipo = Integer.parseInt(d[0]);
-            int id = Integer.parseInt(d[1]);
-            int pos = Integer.parseInt(d[2]);
-            if (tipo == 0 && (id < 0 || id > 9)) {
-                return false;
-            }
-            if (tipo == 1 && (id < 0 || id > 5)) {
-                return false;
-            }
-            if (pos < 1 || pos > size) {
+            posicao =Integer.parseInt(abbysAndTools[i][0]);
+            posicao1 =Integer.parseInt(abbysAndTools[i][1]);
+            posicao2 =Integer.parseInt(abbysAndTools[i][2]);
+            if (posicao!= 0||posicao1<0||posicao1>5|| posicao2>worldsize || posicao2<0){
                 return false;
             }
         }
         return true;
+    }
+    /* public static String[][] guardaAbbys(String[][]abbysAndTools, int worldsize){
+         String[][] resultado = new String[abbysAndTools.length][3];
+         for(int i=0; i< abbysAndTools.length; i++){
+             if(Integer.parseInt(abbysAndTools[i][0])== 0){
+                 resultado[i][0] = abbysAndTools[i][0];
+                 resultado[i][1] = abbysAndTools[i][1];
+                 resultado[i][2] = abbysAndTools[i][2];
+             }
+         }
+         return resultado;
+     }*/
+    public static boolean tamanhoTabuleiro(String[][] playerInfo, int worldSize) {
+        return (worldSize >= (2 * playerInfo.length));
+    }
+
+    public Tabuleiro(int tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public Tabuleiro(int tamanho, Abbys[] abbys) {
+        this.tamanho = tamanho;
+        this.abbys = abbys;
+    }
+
+    public void setAbbys(Abbys[] abbys) {
+        this.abbys = abbys;
     }
 }

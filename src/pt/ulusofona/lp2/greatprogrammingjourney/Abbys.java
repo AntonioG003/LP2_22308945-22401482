@@ -1,50 +1,81 @@
 package pt.ulusofona.lp2.greatprogrammingjourney;
 
-public class Abbys {
-
+public class Abbys  {
     int id;
     String titulo;
+    String efeito;
+    String descricao;
+    boolean estado;
     int posicao;
 
-    public Abbys(int id, int posicao) {
+    public Abbys(int id, String titulo, String efeito, String descricao, int posicao) {
         this.id = id;
+        this.titulo = titulo;
+        this.efeito = efeito;
+        this.descricao = descricao;
+        this.estado = true;
         this.posicao = posicao;
-        this.titulo = escreve(id);
     }
 
-    public static String escreve(int id) {
-        switch (id) {
-            case 0: return "Erro de sintaxe";
-            case 1: return "Erro de lógica";
-            case 2: return "Exception";
-            case 3: return "FileNotFoundException";
-            case 4: return "Crash";
-            case 5: return "Código Duplicado";
-            case 6: return "Efeitos Secundários";
-            case 7: return "Blue Screen of Death";
-            case 8: return "Ciclo Infinito";
-            case 9: return "Segmentation Fault";
-            default: return "";
+    public static Abbys[] guardaAbbys(String[][]abbysAndTools, int worldsize){
+        Abbys[] resultado = new Abbys[worldsize];
+        int j =0;
+        String[] textoAbbys;
+        String titulo;
+        String efeito;
+        String descricao;
+        int id;
+        int posicao;
+        for (int i = 0; i< abbysAndTools.length; i++){
+            if (Integer.parseInt(abbysAndTools[i][0]) == 0){
+                id = Integer.parseInt(abbysAndTools[i][1]);
+                posicao = Integer.parseInt(abbysAndTools[i][2]);
+                textoAbbys = escreveAbbys(id);
+                efeito = textoAbbys[0];
+                titulo = textoAbbys[1];
+                descricao = textoAbbys[2];
+                resultado[j++] = new Abbys(id,titulo,efeito,descricao,posicao);
+            }
         }
+        return resultado;
     }
+    public static String[] escreveAbbys(int abby){
+        String[] resultado = new String[3];
+        switch (abby){
+            case 0: resultado = Escreve.abbysErroDeSintaxe();
+                break;
+            case 1: resultado = Escreve.abbysErroDeLogica();
+                break;
+            case 2: resultado = Escreve.abbysException();
+                break;
+            case 3: resultado = Escreve.abbysFileNotFoundException();
+                break;
+            case 4: resultado = Escreve.abbysCrash();
+                break;
+            case 5: resultado = Escreve.abbysCodigoDuplicado();
+                break;
+            case 6: resultado = Escreve.abbysEfeitosSecundarios();
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
 
-    public static Abbys[] guarda(String[][] data) {
-        if (data == null) {
-            return new Abbys[0];
         }
-        int c = 0;
-        for (String[] d : data) {
-            if (d[0].equals("0")) {
-                c++;
-            }
+        return resultado;
+    }
+    public static void erroDeSintaxe(Player jogador){
+        if (jogador.procuraFerramenta(4)){
+            return;
         }
-        Abbys[] r = new Abbys[c];
-        int i = 0;
-        for (String[] d : data) {
-            if (d[0].equals("0")) {
-                r[i++] = new Abbys(Integer.parseInt(d[1]), Integer.parseInt(d[2]));
-            }
+        jogador.posicao-=1;
+    }
+    public static void erroDeLogica (Player jogador, Tabuleiro tabuleiro){
+        if(jogador.procuraFerramenta(2)){
+            return;
         }
-        return r;
+        jogador.posicao = jogador.casas[0];
     }
 }

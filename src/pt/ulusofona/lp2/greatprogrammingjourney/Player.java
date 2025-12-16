@@ -2,107 +2,160 @@ package pt.ulusofona.lp2.greatprogrammingjourney;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Player {
 
+    public enum Cores {
+        PURPLE, GREEN, BROWN, BLUE
+    }
+
     int id;
     String nome;
-    ArrayList<String> linguagens;
-    String cor;
-    int posicao = 1;
-    boolean ativo = true;
-    boolean preso = false;
-    int turnosPerdidos = 0;
-    ArrayList<Tools> tools = new ArrayList<>();
-    int ultimoDado = 0;
+    ArrayList<String> linguagem;
+    Cores cor;
+    int posicao;
+    boolean estado;
+    Tools[] ferramentas;
+    int[] casas = {0,0};
+    boolean c = false;
+    boolean assembly = false;
 
-    public Player(int id, String nome, ArrayList<String> linguagens, String cor) {
+    public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado) {
         this.id = id;
         this.nome = nome;
-        this.linguagens = linguagens;
-        this.cor = formatCor(cor);
+        this.linguagem = linguagem;
+        this.cor = cor;
+        this.posicao = posicao;
+        this.estado = estado;
+        //this.casas = new int[2];
+    }
+    public Player(int id, String nome, ArrayList<String> linguagem, Cores cor, int posicao, boolean estado, boolean c, boolean assembly) {
+        this.id = id;
+        this.nome = nome;
+        this.linguagem = linguagem;
+        this.cor = cor;
+        this.posicao = posicao;
+        this.estado = estado;
+        this.c = c;
+        this.assembly = assembly;
     }
 
-    public static boolean valida(String[][] info) {
-        return info != null && info.length >= 2 && info.length <= 4;
+    public String[] getInfoArrayApi() {
+        Collections.sort(linguagem);
+        String linguagensStr = String.join("; ", linguagem);
+        String corFormatada = cor.name().substring(0, 1).toUpperCase() + cor.name().substring(1).toLowerCase();
+        return new String[]{
+                String.valueOf(id),
+                nome,
+                linguagensStr,
+                corFormatada,
+                String.valueOf(posicao)
+        };
     }
 
-    public static Player[] cria(String[][] info) {
-        Player[] r = new Player[info.length];
-        for (int i = 0; i < info.length; i++) {
-            ArrayList<String> l = new ArrayList<>();
-            for (String s : info[i][2].split(";")) {
-                l.add(s.trim());
-            }
-            r[i] = new Player(
-                    Integer.parseInt(info[i][0]),
-                    info[i][1],
-                    l,
-                    info[i][3]
-            );
+    public static String programmerInfoAsStr(Player jogador) {
+        String linguagensStr = String.join("; ", jogador.linguagem);
+        String estadoStr = jogador.estado ? "Em Jogo" : "Derrotado";
+        if (jogador.ferramentas==null){
+            return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | No tools | "+
+                    linguagensStr + " | " + estadoStr;
         }
-        return r;
+        Tools.sortArray(jogador.ferramentas);
+        String ferramentasStr = String.join("; ", jogador.ferramentas.toString());
+        return jogador.id + " | " + jogador.nome + " | " + jogador.posicao + " | " +
+                ferramentasStr +"|"+ linguagensStr + " | " + estadoStr;
     }
 
-    public boolean podeMover(int casas) {
-        if (!ativo || preso || turnosPerdidos > 0) {
+    public static boolean recebePlayer(String[][] playerInfo) {
+        if (playerInfo == null){
             return false;
         }
-        if (linguagens.get(0).equals("Assembly") && casas > 2) {
+        if (playerInfo.length < 2 || playerInfo.length > 4){
             return false;
         }
-        if (linguagens.get(0).equals("C") && casas > 3) {
-            return false;
-        }
-        ultimoDado = casas;
         return true;
     }
+    public static Player[] guardaPlayer (String[][] playerInfo){
+        Player [] jogadores;
+        jogadores = new Player[playerInfo.length];
+        for (int i = 0; i < playerInfo.length; i++) {
+            int id = Integer.parseInt(playerInfo[i][0]);
+            String nome = playerInfo[i][1];
+            String[] linguagensStr = playerInfo[i][2].split(";");
+            if(Objects.equals(linguagensStr[0], "C")){
 
-    public boolean temToolPara(int abismo) {
-        for (Tools t : tools) {
-            if (!t.usada && t.anula(abismo)) {
-                t.usada = true;
+            }
+            ArrayList<String> linguagens = new ArrayList<>();
+            for (String lang : linguagensStr) {
+                linguagens.add(lang.trim());
+            }
+            Player.Cores cor = Player.Cores.valueOf(playerInfo[i][3].trim().toUpperCase());
+            if(Objects.equals(linguagensStr[0], "C")){
+                jogadores[i] = new Player(id, nome, linguagens, cor, 1, true,true,false);
+            } else if (Objects.equals(linguagensStr[0], "Assembly")){
+                jogadores[i] = new Player(id, nome, linguagens, cor, 1, true,false, true);
+            }
+            jogadores[i] = new Player(id, nome, linguagens, cor, 1, true);
+        }
+        return jogadores;
+    }
+
+    public static int ricochete(int novaPosicao, int tamanhoTabuleiro) {
+        if (novaPosicao > tamanhoTabuleiro) {
+            int sobra = novaPosicao - tamanhoTabuleiro;
+            return tamanhoTabuleiro - sobra;
+        }
+        if (novaPosicao < 1) {
+            return 1;
+        }
+        return novaPosicao;
+    }
+    public static boolean verificaTool(String[][] abbysAndTools, int worldsize){
+        int posicao,posicao1,posicao2;
+        for (String[] abbysAndTool : abbysAndTools) {
+            posicao = posicao1 = posicao2 = -1;
+            for (int j = 0; j < 3; j++) {
+                if (!abbysAndTool[j].matches("\\d+")) {
+                    return false;
+                }
+            }
+            posicao = Integer.parseInt(abbysAndTool[0]);
+            posicao1 = Integer.parseInt(abbysAndTool[1]);
+            posicao2 = Integer.parseInt(abbysAndTool[2]);
+            if (posicao != 1 || posicao1 < 0 || posicao1 > 5 || posicao2 > worldsize || posicao2 < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public String imprimePlayerFerramentas(){
+        StringBuilder resultado = new StringBuilder(nome);
+        for (int i = 0; i< ferramentas.length; i++){
+            //resultado.append(";").append(ferramentas[].getTitulo(i));
+        }
+
+        return resultado.toString();
+    }
+    public boolean procuraFerramenta(int id){
+        for (Tools t: ferramentas){
+            if (t.id == id && t.estado){
+                t.estado = false;
                 return true;
             }
         }
         return false;
     }
-
-    public String ferramentas() {
-        if (tools.isEmpty()) {
-            return "No tools";
+    public void casasAndadas(int andou){
+        casas[1] = casas[0];
+        casas[0] = andou;
+    }
+    public boolean restricaoDeLinguagem(int casas){
+        if (c && casas>3){
+            return false;
+        } else if (assembly && casas>2) {
+            return false;
         }
-        ArrayList<String> n = new ArrayList<>();
-        for (Tools t : tools) {
-            n.add(t.titulo);
-        }
-        return String.join("; ", n);
-    }
-
-    public String infoStr() {
-        Collections.sort(linguagens);
-        String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
-        return id + " | " + nome + " | " + posicao + " | " +
-                ferramentas() + " | " +
-                String.join("; ", linguagens) + " | " + estado;
-    }
-
-    public String[] infoArray() {
-        Collections.sort(linguagens);
-        String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
-        return new String[]{
-                String.valueOf(id),
-                nome,
-                String.join("; ", linguagens),
-                cor,
-                String.valueOf(posicao),
-                ferramentas(),
-                estado
-        };
-    }
-
-    private static String formatCor(String c) {
-        c = c.toLowerCase();
-        return c.substring(0, 1).toUpperCase() + c.substring(1);
+        return true;
     }
 }

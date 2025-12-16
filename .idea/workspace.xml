@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="14/12/2025- 15:19">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b43d8e3e-dddd-4c93-84b6-bd1b47df6312" name="Changes" comment="16/12/2025- 21:20">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestGameManager.java/src/pt/ulusofona/lp2/greatprogrammingjourney/TestGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestGameManager.java/src/pt/ulusofona/lp2/greatprogrammingjourney/TestGameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LP2_22308945-22401482/pt/ulusofona/lp2/greatprogrammingjourney/Tabuleiro.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Abbys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Abbys.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Escreve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/Escreve.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/lp2/greatprogrammingjourney/GameManager.java" afterDir="false" />
@@ -219,7 +220,7 @@
       <workItem from="1765033177619" duration="6284000" />
       <workItem from="1765199039372" duration="34672000" />
       <workItem from="1765644528026" duration="296000" />
-      <workItem from="1765901507269" duration="5547000" />
+      <workItem from="1765901507269" duration="11709000" />
     </task>
     <task id="LOCAL-00001" summary="teste BC">
       <option name="closed" value="true" />
@@ -477,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765842799210</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="16/12/2025- 21:20">
+      <option name="closed" value="true" />
+      <created>1765920055608</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1765920055608</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +522,8 @@
     <MESSAGE value="15/12/2025- 23" />
     <MESSAGE value="15/12/2025- 23;30" />
     <MESSAGE value="15/12/2025- boanoite" />
-    <option name="LAST_COMMIT_MESSAGE" value="15/12/2025- boanoite" />
+    <MESSAGE value="16/12/2025- 21:20" />
+    <option name="LAST_COMMIT_MESSAGE" value="16/12/2025- 21:20" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LP2_22308945_22401482$Teste_testDrop_GameOver.ic" NAME="Teste.testDrop_GameOver Coverage Results" MODIFIED="1762099831184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
