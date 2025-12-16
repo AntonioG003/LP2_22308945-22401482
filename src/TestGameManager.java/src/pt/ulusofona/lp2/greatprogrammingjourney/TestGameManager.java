@@ -21,6 +21,23 @@ public class TestGameManager {
         assertTrue(gm.createInitialBoard(jogadores, 6));
         return gm;
     }
+    public GameManager criarJogoComplexo(){
+        GameManager gm = new GameManager();
+
+        String[][] jogadores = {
+                {"1", "Bruninho", "Common Lisp; PHP", "Blue"},
+                {"2", "Raquelita", "C#", "Green"}
+        };
+        String[][] abbysAndTools = {
+                {"0","1","1"},
+                {"0","2","2"},
+                {"0","3","4"},
+                {"0","4","6"},
+        };
+
+        assertTrue(gm.createInitialBoard(jogadores, 6,abbysAndTools));
+        return gm;
+    }
 
     @Test
     public void testCreateInitialBoardValido() {
@@ -92,5 +109,10 @@ public class TestGameManager {
     public void testGetAuthorsPanel() {
         GameManager gm = criarJogoBase();
         assertNotNull(gm.getAuthorsPanel());
+    }
+    @Test
+    public void testCreateInitialBoard2(){
+        GameManager gm = criarJogoComplexo();
+
     }
 }

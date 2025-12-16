@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.greatprogrammingjourney;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameManager {
 
@@ -103,79 +104,57 @@ public class GameManager {
         }
         return jogadores[atual].id;
     }
+
     public boolean moveCurrentPlayer(int casas) {
         Player p = jogadores[atual];
-
         if (!p.podeMover(casas)) {
             return false;
         }
-
         p.posicao += casas;
-
         if (p.posicao > tabuleiro.tamanho) {
-            int excesso = p.posicao - tabuleiro.tamanho;
-            p.posicao = tabuleiro.tamanho - excesso;
+            int e = p.posicao - tabuleiro.tamanho;
+            p.posicao = tabuleiro.tamanho - e;
         }
-
         turnos++;
         atual = (atual + 1) % jogadores.length;
         return true;
     }
-
 
     public String reactToAbyssOrTool() {
         Player p = jogadores[(atual - 1 + jogadores.length) % jogadores.length];
 
         for (Tools t : tabuleiro.tools) {
             if (!t.usada && t.posicao == p.posicao) {
-                t.usada = true;
                 p.tools.add(t);
-                return "Recolheu ferramenta: " + t.nome;
+                return "Recolheu ferramenta: " + t.titulo;
             }
         }
 
         for (Abbys a : tabuleiro.abbys) {
             if (a.posicao == p.posicao) {
-
                 if (p.temToolPara(a.id)) {
                     return a.titulo + " anulado por ferramenta";
                 }
-
-                if (a.id == 0) {
-                    p.posicao -= 1;
-                } else if (a.id == 1) {
-                    p.posicao -= p.ultimoDado / 2;
-                } else if (a.id == 2) {
-                    p.posicao -= 2;
-                } else if (a.id == 3) {
-                    p.posicao -= 3;
-                } else if (a.id == 4) {
-                    p.posicao = 1;
-                } else if (a.id == 5) {
-                    p.posicao -= p.ultimoDado;
-                } else if (a.id == 6) {
-                    p.turnosPerdidos = 2;
-                } else if (a.id == 7) {
-                    p.ativo = false;
-                } else if (a.id == 8) {
-                    p.preso = true;
-                } else if (a.id == 9) {
-                    p.posicao -= 3;
+                switch (a.id) {
+                    case 0: p.posicao--; break;
+                    case 1: p.posicao -= p.ultimoDado / 2; break;
+                    case 2: return "Exception";
+                    case 3: p.posicao = 1; break;
+                    case 4: p.ativo = false; break;
+                    case 5: p.posicao -= p.ultimoDado; break;
+                    case 6: p.turnosPerdidos = 2; break;
+                    case 7: p.ativo = false; break;
+                    case 8: p.preso = true; break;
+                    case 9: return "Segmentation Fault";
                 }
-
                 if (p.posicao < 1) {
                     p.posicao = 1;
                 }
-
                 return "Caiu em " + a.titulo;
             }
         }
-
-        return "Nada aconteceu";
+        return "";
     }
-
-
-
 
     public boolean gameIsOver() {
         boolean vivo = false;
@@ -232,5 +211,8 @@ public class GameManager {
 
     public JPanel getAuthorsPanel() {
         return new JPanel();
+    }
+    public HashMap<String,String> customizeBoard(){
+        return null;
     }
 }

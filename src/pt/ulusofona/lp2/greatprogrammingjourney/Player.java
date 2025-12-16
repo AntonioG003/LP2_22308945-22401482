@@ -9,7 +9,7 @@ public class Player {
     String nome;
     ArrayList<String> linguagens;
     String cor;
-    int posicao = 0;
+    int posicao = 1;
     boolean ativo = true;
     boolean preso = false;
     int turnosPerdidos = 0;
@@ -48,7 +48,10 @@ public class Player {
         if (!ativo || preso || turnosPerdidos > 0) {
             return false;
         }
-        if (linguagens.contains("Assembly") && casas > 2) {
+        if (linguagens.get(0).equals("Assembly") && casas > 2) {
+            return false;
+        }
+        if (linguagens.get(0).equals("C") && casas > 3) {
             return false;
         }
         ultimoDado = casas;
@@ -66,12 +69,12 @@ public class Player {
     }
 
     public String ferramentas() {
-        if (tools.isEmpty()){
+        if (tools.isEmpty()) {
             return "No tools";
         }
         ArrayList<String> n = new ArrayList<>();
         for (Tools t : tools) {
-            n.add(t.nome);
+            n.add(t.titulo);
         }
         return String.join("; ", n);
     }
@@ -79,7 +82,8 @@ public class Player {
     public String infoStr() {
         Collections.sort(linguagens);
         String estado = ativo ? (preso ? "Preso" : "Em Jogo") : "Derrotado";
-        return id + " | " + nome + " | " + posicao + " | " + ferramentas() + " | " +
+        return id + " | " + nome + " | " + posicao + " | " +
+                ferramentas() + " | " +
                 String.join("; ", linguagens) + " | " + estado;
     }
 
@@ -99,6 +103,6 @@ public class Player {
 
     private static String formatCor(String c) {
         c = c.toLowerCase();
-        return c.substring(0,1).toUpperCase() + c.substring(1);
+        return c.substring(0, 1).toUpperCase() + c.substring(1);
     }
 }
